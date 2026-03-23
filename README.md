@@ -16,7 +16,10 @@ Desenvolver um modelo que seja capaz de:
 
 - Python  
 - PyTorch ou TensorFlow  
-- OpenCV  
+- OpenCV
+- SymPy
+- NumPy
+- Pandas
 
 ## Status
 
