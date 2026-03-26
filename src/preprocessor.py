@@ -14,7 +14,7 @@ class ImageProcessor:
     def load_image(self) -> np.ndarray:     # Load image in GrayScale
         self.original_image = cv2.imread(self.image_path, cv2.IMREAD_GRAYSCALE) 
         if self.original_image is None:
-            raise FileNotFoundError(f"Image not found! Path: {self.image_path}")
+            raise FileNotFoundError(f"Imagem não encontrada! Path: {self.image_path}")
         return self.original_image
     
     def get_processed_pipeline(self) -> Tuple[np.ndarray, np.ndarray, List[np.ndarray]]:
@@ -55,4 +55,4 @@ if __name__ == "__main__":
     # Substitua pelo caminho de uma foto que você tirar de um papel escrito "2+2"
     # test_path = "data/raw/teste_equacao.jpg" 
     # thresh_img, detected_symbols = process_equation_image(test_path)
-    print("PreProcessor Script Ready!")
+    print("Script do PreProcesser pronto!")
