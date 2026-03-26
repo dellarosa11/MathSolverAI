@@ -21,6 +21,13 @@ Desenvolver um modelo que seja capaz de:
 - NumPy
 - Pandas
 
+## Configurando o Ambiente
+1. Python instalado.
+2. Clone o repositório:
+    git clone https://github.com/dellarosa11/MathSolverAI.git
+3. Instale as dependências:
+    pip install -r requirements.txt
+
 ## Status
 
 Em desenvolvimento
