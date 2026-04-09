@@ -62,7 +62,7 @@ def test_segmentation_visual():
             for i, sym in enumerate(processed_symbols):
                 plt.subplot(2, num_symbols, num_symbols + i + 1)
                 plt.imshow(sym, cmap='gray')
-                plt.title(f"Símbolo {i+1}")
+                plt.title(f"S{i+1}")
                 plt.axis('off')
 
         plt.tight_layout()

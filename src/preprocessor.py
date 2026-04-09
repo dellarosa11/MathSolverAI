@@ -58,13 +58,17 @@ class ImageProcessor:
         """
         Detecta contornos na imagem binária e retorna as coordenadas das bounding boxes.
         """
+        if cv2.countNonZero(binary_img) == 0:
+            print("AVISO: A imagem binária está totalmente PRETA!")
+            return[]
+    
         contours, _ = cv2.findContours(binary_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         
         boxes = []
         for cnt in contours:
             x, y, w, h = cv2.boundingRect(cnt)
             # Filtro de tamanho para ignorar ruídos
-            if w > 5 and h > 5:
+            if w > 5 and h > 5 :
                 boxes.append((x, y, w, h))
 
         # Ordenar da esquerda para a direita
