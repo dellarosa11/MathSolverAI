@@ -18,7 +18,8 @@ def test_vision_module():
         processor = ImageProcessor(image_path)
         
         # Executa a lógica encapsulada
-        original, processed, symbols = processor.get_processed_pipeline()
+        original, processed = processor.get_processed_pipeline()
+        symbols = processor.extract_bounding_boxes(processed)
         
         # Visualização (Apenas para conferência humana)
         plt.figure(figsize=(10, 5))
