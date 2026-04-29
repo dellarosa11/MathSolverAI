@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, List, Union
+from typing import Any, Dict, List, Union
 
 from sympy import Eq, simplify, solve, symbols
 from sympy.parsing.sympy_parser import (
@@ -83,12 +83,55 @@ class MathSolver:
         try:
             if "=" in clean_expression:
                 left_side, right_side = clean_expression.split("=", 1)
-                equation = Eq(self._parse(left_side), self._parse(right_side))
+                left_expr = self._parse(left_side)
+                right_expr = self._parse(right_side)
+                difference = simplify(left_expr - right_expr)
+
+                if not getattr(difference, "free_symbols", set()):
+                    return bool(difference == 0)
+
+                equation = Eq(left_expr, right_expr)
                 return solve(equation, self.variable)
 
             return simplify(self._parse(clean_expression))
         except Exception as exc:
             raise ValueError(f"Erro ao processar a expressao '{expression}': {exc}") from exc
+
+    def describe_solution(self, expression: str) -> Dict[str, Any]:
+        clean_expression = self.normalize_expression(expression)
+
+        if "=" not in clean_expression:
+            return {
+                "kind": "expression",
+                "normalized_expression": clean_expression,
+                "result": self.solve(clean_expression),
+            }
+
+        left_side, right_side = clean_expression.split("=", 1)
+        left_expr = self._parse(left_side)
+        right_expr = self._parse(right_side)
+        left_value = simplify(left_expr)
+        right_value = simplify(right_expr)
+        difference = simplify(left_value - right_value)
+
+        if not getattr(difference, "free_symbols", set()):
+            return {
+                "kind": "numeric_equation",
+                "normalized_expression": clean_expression,
+                "left_side": left_side,
+                "right_side": right_side,
+                "left_value": left_value,
+                "right_value": right_value,
+                "result": bool(difference == 0),
+            }
+
+        return {
+            "kind": "symbolic_equation",
+            "normalized_expression": clean_expression,
+            "left_side": left_side,
+            "right_side": right_side,
+            "result": self.solve(clean_expression),
+        }
 
 
 def resolver(expressao: str) -> Any:

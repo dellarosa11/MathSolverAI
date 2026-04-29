@@ -19,6 +19,26 @@ def test_solver_solves_simple_equation():
     assert result == [3]
 
 
+def test_solver_evaluates_numeric_equation_as_boolean():
+    solver = MathSolver()
+
+    assert solver.solve("13 + 57 = 70") is True
+    assert solver.solve("13 + 57 = 71") is False
+
+
+def test_solver_describes_numeric_equation_sides():
+    solver = MathSolver()
+
+    description = solver.describe_solution("13 + 57 = 70")
+
+    assert description["kind"] == "numeric_equation"
+    assert description["left_side"] == "13+57"
+    assert str(description["left_value"]) == "70"
+    assert description["right_side"] == "70"
+    assert str(description["right_value"]) == "70"
+    assert description["result"] is True
+
+
 def test_solver_normalizes_unicode_operators():
     solver = MathSolver()
 

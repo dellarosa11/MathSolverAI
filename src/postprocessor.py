@@ -4,6 +4,8 @@ import math
 from dataclasses import dataclass
 from typing import Any, Iterable, Sequence
 
+from sympy import simplify
+
 
 EPSILON = 1e-9
 INVALID_START_TOKENS = {"*", "/", "=", ")"}
@@ -35,6 +37,36 @@ class ExpressionCorrector:
 
     def __init__(self, solver: Any):
         self.solver = solver
+
+    def _equation_structure_bonus(self, normalized_expression: str) -> float:
+        if "=" not in normalized_expression:
+            return 0.0
+
+        left_side, right_side = normalized_expression.split("=", 1)
+        bonus = 0.6
+
+        try:
+            left_expr = self.solver._parse(left_side)
+            right_expr = self.solver._parse(right_side)
+            difference = simplify(left_expr - right_expr)
+            free_symbols = getattr(difference, "free_symbols", set())
+
+            if free_symbols:
+                bonus += 0.18
+            elif difference == 0:
+                bonus += 0.55
+            else:
+                bonus -= 0.12
+        except Exception:
+            bonus -= 0.05
+
+        return bonus
+
+    @staticmethod
+    def _plain_number_penalty(normalized_expression: str) -> float:
+        if normalized_expression.isdigit() and len(normalized_expression) >= 5:
+            return min(0.25, 0.05 * (len(normalized_expression) - 4))
+        return 0.0
 
     @staticmethod
     def _extract_symbol_candidates(symbol: Any, limit: int) -> list[dict[str, float]]:
@@ -111,6 +143,8 @@ class ExpressionCorrector:
             normalized_expression = self.solver.normalize_expression(expression)
             valid = True
             score += 0.35
+            score += self._equation_structure_bonus(normalized_expression)
+            score -= self._plain_number_penalty(normalized_expression)
 
             try:
                 self.solver.solve(normalized_expression)

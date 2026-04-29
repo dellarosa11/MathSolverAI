@@ -159,6 +159,28 @@ class MathSolverAI:
             )
         return correction
 
+    @staticmethod
+    def _print_solution_details(solution_details: dict[str, object]) -> str:
+        kind = str(solution_details.get("kind", "expression"))
+        result = solution_details.get("result")
+
+        if kind == "numeric_equation":
+            left_side = solution_details.get("left_side")
+            right_side = solution_details.get("right_side")
+            left_value = solution_details.get("left_value")
+            right_value = solution_details.get("right_value")
+            print(f"[INFO] Lado esquerdo calculado: {left_side} = {left_value}")
+            print(f"[INFO] Lado direito calculado: {right_side} = {right_value}")
+            print(f"[SUCESSO] Igualdade: {result}")
+            return str(result)
+
+        if kind == "symbolic_equation":
+            print(f"[SUCESSO] Solucao: {result}")
+            return str(result)
+
+        print(f"[SUCESSO] Resultado: {result}")
+        return str(result)
+
     def run_pipeline(
         self,
         image_path: str | Path,
@@ -193,6 +215,10 @@ class MathSolverAI:
             normalized_expression = self.solver.normalize_expression(expression_to_use)
             if normalized_expression != expression_to_use:
                 print(f"[INFO] Expressao normalizada: {normalized_expression}")
+
+            if hasattr(self.solver, "describe_solution"):
+                solution_details = self.solver.describe_solution(normalized_expression)
+                return self._print_solution_details(solution_details)
 
             result = self.solver.solve(normalized_expression)
             print(f"[SUCESSO] Resultado: {result}")

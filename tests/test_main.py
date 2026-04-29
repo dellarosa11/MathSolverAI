@@ -54,6 +54,14 @@ class DummySolver:
         self.last_expression = expression
         return self.result
 
+    def describe_solution(self, expression):
+        self.last_expression = expression
+        return {
+            "kind": "expression",
+            "normalized_expression": expression,
+            "result": self.result,
+        }
+
 
 class DummyCorrector:
     def correct(self, recognition, **kwargs):
@@ -148,6 +156,37 @@ def test_run_pipeline_returns_empty_string_when_no_boxes():
 
     assert result == ""
     assert ai.solver.last_expression is None
+
+
+def test_run_pipeline_prints_numeric_equation_details(capsys):
+    binary = np.zeros((32, 48), dtype=np.uint8)
+    binary[0:5, 0:5] = 10
+    binary[0:5, 8:13] = 20
+    binary[0:5, 16:21] = 30
+
+    ai = _build_test_app(
+        binary=binary,
+        boxes=[(0, 0, 5, 5), (8, 0, 5, 5), (16, 0, 5, 5)],
+        labels_by_mean={10: "1", 20: "=", 30: "2"},
+        result=True,
+    )
+    ai.solver.describe_solution = lambda expression: {
+        "kind": "numeric_equation",
+        "normalized_expression": expression,
+        "left_side": "1+1",
+        "right_side": "2",
+        "left_value": 2,
+        "right_value": 2,
+        "result": True,
+    }
+
+    result = ai.run_pipeline("ignored.png")
+    captured = capsys.readouterr()
+
+    assert result == "True"
+    assert "Lado esquerdo calculado: 1+1 = 2" in captured.out
+    assert "Lado direito calculado: 2 = 2" in captured.out
+    assert "Igualdade: True" in captured.out
 
 
 def test_validate_paths_accepts_existing_files(tmp_path):
