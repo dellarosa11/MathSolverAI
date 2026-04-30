@@ -122,6 +122,41 @@ Observacoes:
 - ele nao resolve sozinho `equals`, `lparen` e `rparen`
 - continue misturando HASYv2 com dados sinteticos, recortes corrigidos e exemplos manuais
 
+## Importando BHMSDS para digitos e sinais
+
+Para baixar e importar o BHMSDS:
+
+```powershell
+python src/data/import_bhmsds.py --clean-previous-import
+```
+
+Esse importador reforca:
+
+- `0` a `9`
+- `plus` com exemplos reais de `+`
+- `minus` com exemplos reais de `-`
+- `div` com exemplos reais de `/`
+
+As imagens do BHMSDS sao invertidas automaticamente para combinar com o padrao do pipeline atual.
+
+Para importar apenas operadores:
+
+```powershell
+python src/data/import_bhmsds.py --symbols operators --clean-previous-import
+```
+
+Para reforcar apenas `0`, `+`, `-` e `/`:
+
+```powershell
+python src/data/import_bhmsds.py --symbols 0 plus minus div --clean-previous-import
+```
+
+Observacoes:
+
+- o BHMSDS nao cobre `equals`, `lparen` e `rparen`
+- o dataset tambem nao oferece um simbolo `times` compativel com a classe `*` do projeto
+- use BHMSDS como reforco para digitos e alguns sinais, nao como substituto unico do restante do dataset
+
 ## Reaproveitando erros do debug como treino
 
 Depois de rodar o exportador de debug:

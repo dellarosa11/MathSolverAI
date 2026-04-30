@@ -29,6 +29,7 @@ Projeto em desenvolvimento para reconhecer simbolos e expressoes matematicas a p
 - [src/solver.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/solver.py): validacao e resolucao simbolica com SymPy
 - [src/data/generate_synthetic_symbols.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/generate_synthetic_symbols.py): gerador de numeros e operadores sinteticos
 - [src/data/import_hasyv2.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/import_hasyv2.py): baixa o HASYv2 oficial e importa operadores manuscritos para `data/symbols`
+- [src/data/import_bhmsds.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/import_bhmsds.py): baixa o BHMSDS e importa digitos e operadores compativeis para `data/symbols`
 - [src/utils/benchmark_inference.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/benchmark_inference.py): benchmark com imagens rotuladas
 - [src/utils/export_inference_debug.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/export_inference_debug.py): exporta recortes, confianca e alternativas por simbolo
 - [src/utils/import_debug_corrections.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/import_debug_corrections.py): reaproveita recortes corrigidos como novos exemplos de treino
@@ -164,6 +165,41 @@ Observacao importante:
 - ele nao cobre da forma que este projeto precisa as classes `=`, `(` e `)`
 - por isso, continue usando seus dados sinteticos/manuais para essas classes
 
+## Como Importar o BHMSDS para Digitos e Sinais
+
+O projeto tambem consegue baixar e integrar o [BHMSDS](https://github.com/wblachowski/bhmsds), um dataset publico com `0-9`, `+`, `-` e `/`.
+
+Importacao recomendada:
+
+```powershell
+python src/data/import_bhmsds.py --clean-previous-import
+```
+
+Por padrao, esse fluxo:
+
+- importa `0-9`
+- importa `plus`, `minus` e `div`
+- divide de forma deterministica em `80%` treino e `20%` validacao
+- inverte as imagens para o padrao do seu pipeline
+
+Para reforcar apenas operadores:
+
+```powershell
+python src/data/import_bhmsds.py --symbols operators --clean-previous-import
+```
+
+Para reforcar so o `0` e alguns sinais:
+
+```powershell
+python src/data/import_bhmsds.py --symbols 0 plus minus div --clean-previous-import
+```
+
+Observacao importante:
+
+- o BHMSDS nao traz `=`, `(` ou `)`
+- ele tambem nao tem um `*` compativel com a classe `times` atual do projeto
+- por isso ele e melhor para reforcar `0-9`, `+`, `-` e `/`
+
 ## Como Treinar
 
 Treino recomendado com defaults mais fortes:
@@ -251,6 +287,7 @@ Veja tambem [benchmarks/README.md](/C:/Users/mathe/OneDrive/Documentos/GitHub/Ma
 - Usar o relatorio de confusao para descobrir quais classes estao se parecendo demais
 - Gerar dados sinteticos para preencher lacunas de operadores e digitos
 - Importar dados reais de operadores com o HASYv2 para sair do excesso de exemplos puramente sinteticos
+- Importar BHMSDS para reforcar digitos reais e sinais como `+`, `-` e `/`
 - Exportar recortes de inferencia para enxergar se o problema esta na segmentacao ou na classificacao
 - Corrigir recortes errados e importar isso de volta para `data/symbols/train`
 - Rodar benchmark antes e depois de cada treino para medir ganho real
