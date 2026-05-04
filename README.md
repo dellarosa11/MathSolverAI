@@ -61,6 +61,22 @@ Usando os caminhos padrao:
 python main.py
 ```
 
+## Interface Web com Streamlit
+
+Para abrir uma interface em estilo chat e testar a IA com imagens:
+
+```powershell
+streamlit run app_streamlit.py
+```
+
+Nessa interface voce consegue:
+
+- escolher o checkpoint em `models/`
+- enviar uma imagem pela barra lateral
+- analisar a expressao em formato de conversa
+- ver a expressao reconhecida, a expressao corrigida e o resultado
+- abrir os detalhes de confianca por simbolo e os candidatos do corretor
+
 Mostrando confianca por simbolo e alternativas:
 
 ```powershell
