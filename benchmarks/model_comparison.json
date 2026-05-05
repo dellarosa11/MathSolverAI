@@ -1,0 +1,2255 @@
+{
+  "manifest_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\benchmarks\\local_photos.json",
+  "ranking": [
+    {
+      "model": "v5",
+      "model_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\models\\math_cnn_plus_mathwriting_v5_best.pth",
+      "summary": {
+        "sample_count": 13,
+        "raw_expression_accuracy": 0.46153846153846156,
+        "corrected_expression_accuracy": 0.8461538461538461,
+        "raw_symbol_accuracy": 0.8360655737704918,
+        "corrected_symbol_accuracy": 0.9672131147540983,
+        "result_sample_count": 13,
+        "raw_result_accuracy": 0.46153846153846156,
+        "corrected_result_accuracy": 0.8461538461538461,
+        "samples_improved_by_correction": 5,
+        "result_samples_improved_by_correction": 5
+      }
+    },
+    {
+      "model": "v4",
+      "model_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\models\\math_cnn_plus_bhmsds_v4_best.pth",
+      "summary": {
+        "sample_count": 13,
+        "raw_expression_accuracy": 0.38461538461538464,
+        "corrected_expression_accuracy": 0.46153846153846156,
+        "raw_symbol_accuracy": 0.819672131147541,
+        "corrected_symbol_accuracy": 0.8688524590163934,
+        "result_sample_count": 13,
+        "raw_result_accuracy": 0.38461538461538464,
+        "corrected_result_accuracy": 0.5384615384615384,
+        "samples_improved_by_correction": 1,
+        "result_samples_improved_by_correction": 2
+      }
+    }
+  ],
+  "expression_win_counts": {
+    "v4": 8,
+    "v5": 12
+  },
+  "expression_unique_wins": {
+    "v4": 1,
+    "v5": 5
+  },
+  "expression_ties": 7,
+  "result_win_counts": {
+    "v4": 8,
+    "v5": 12
+  },
+  "result_unique_wins": {
+    "v4": 1,
+    "v5": 5
+  },
+  "result_ties": 7,
+  "samples": [
+    {
+      "sample_id": "eq1",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq1.png",
+      "expected_expression": "5+3",
+      "expected_result": "8",
+      "expression_winners": [
+        "v4",
+        "v5"
+      ],
+      "result_winners": [
+        "v4",
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq1",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq1.png",
+          "expected_expression": "5+3",
+          "raw_expression": "5+3",
+          "corrected_expression": "5+3",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "8",
+          "raw_result": "8",
+          "corrected_result": "8",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "5+3",
+              "normalized_expression": "5+3",
+              "score": -0.027195980987069435,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5*3",
+              "normalized_expression": "5*3",
+              "score": -0.9882988720293797,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "583",
+              "normalized_expression": "583",
+              "score": -1.1020518510202437,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "573",
+              "normalized_expression": "573",
+              "score": -1.1320627687916696,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "523",
+              "normalized_expression": "523",
+              "score": -2.521573841757145,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "563",
+              "normalized_expression": "563",
+              "score": -2.5867028014165916,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "533",
+              "normalized_expression": "533",
+              "score": -2.911479805041792,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5/3",
+              "normalized_expression": "5/3",
+              "score": -3.036444602754026,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq1",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq1.png",
+          "expected_expression": "5+3",
+          "raw_expression": "5+3",
+          "corrected_expression": "5+3",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "8",
+          "raw_result": "8",
+          "corrected_result": "8",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "5+3",
+              "normalized_expression": "5+3",
+              "score": 0.60963529660815,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5*3",
+              "normalized_expression": "5*3",
+              "score": -3.2447143718507796,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "573",
+              "normalized_expression": "573",
+              "score": -3.2673466538046463,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5/3",
+              "normalized_expression": "5/3",
+              "score": -3.7778265816287786,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "583",
+              "normalized_expression": "583",
+              "score": -4.226609446523282,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "523",
+              "normalized_expression": "523",
+              "score": -4.42088394088434,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "563",
+              "normalized_expression": "563",
+              "score": -4.629607985091876,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "543",
+              "normalized_expression": "543",
+              "score": -4.778615786623592,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq2",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq2.png",
+      "expected_expression": "57-4",
+      "expected_result": "53",
+      "expression_winners": [
+        "v4",
+        "v5"
+      ],
+      "result_winners": [
+        "v4",
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq2",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq2.png",
+          "expected_expression": "57-4",
+          "raw_expression": "57-4",
+          "corrected_expression": "57-4",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "53",
+          "raw_result": "53",
+          "corrected_result": "53",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "57-4",
+              "normalized_expression": "57-4",
+              "score": 0.6751009526481222,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "57/4",
+              "normalized_expression": "57/4",
+              "score": -1.3949082293190251,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "57=4",
+              "normalized_expression": "57=4",
+              "score": -1.5011672943911074,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "37-4",
+              "normalized_expression": "37-4",
+              "score": -4.4929055727334175,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5774",
+              "normalized_expression": "5774",
+              "score": -4.694559388798635,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5724",
+              "normalized_expression": "5724",
+              "score": -4.836958197582921,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5764",
+              "normalized_expression": "5764",
+              "score": -4.846616098252716,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5704",
+              "normalized_expression": "5704",
+              "score": -4.943011539646564,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq2",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq2.png",
+          "expected_expression": "57-4",
+          "raw_expression": "57-4",
+          "corrected_expression": "57-4",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "53",
+          "raw_result": "53",
+          "corrected_result": "53",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "57-4",
+              "normalized_expression": "57-4",
+              "score": 0.6632734045568406,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "57/4",
+              "normalized_expression": "57/4",
+              "score": -1.4392577233379682,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "57=4",
+              "normalized_expression": "57=4",
+              "score": -1.6014909100734738,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "53-4",
+              "normalized_expression": "53-4",
+              "score": -4.667890096121645,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "57-3",
+              "normalized_expression": "57-3",
+              "score": -4.834383435189097,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "37-4",
+              "normalized_expression": "37-4",
+              "score": -4.844141497414882,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "52-4",
+              "normalized_expression": "52-4",
+              "score": -4.908628885212337,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "97-4",
+              "normalized_expression": "97-4",
+              "score": -4.914844949910802,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq3",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq3.png",
+      "expected_expression": "27+3",
+      "expected_result": "30",
+      "expression_winners": [
+        "v4",
+        "v5"
+      ],
+      "result_winners": [
+        "v4",
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq3",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq3.png",
+          "expected_expression": "27+3",
+          "raw_expression": "27+3",
+          "corrected_expression": "27+3",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "30",
+          "raw_result": "30",
+          "corrected_result": "30",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "27+3",
+              "normalized_expression": "27+3",
+              "score": 0.38167335277028486,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2783",
+              "normalized_expression": "2783",
+              "score": -2.211749654726742,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2713",
+              "normalized_expression": "2713",
+              "score": -3.3614047765708266,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2773",
+              "normalized_expression": "2773",
+              "score": -3.437372531403777,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "27*3",
+              "normalized_expression": "27*3",
+              "score": -3.5528309446204966,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2743",
+              "normalized_expression": "2743",
+              "score": -3.674951894099309,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "27/3",
+              "normalized_expression": "27/3",
+              "score": -3.8309778988951537,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2723",
+              "normalized_expression": "2723",
+              "score": -4.000593567680593,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq3",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq3.png",
+          "expected_expression": "27+3",
+          "raw_expression": "27+3",
+          "corrected_expression": "27+3",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "30",
+          "raw_result": "30",
+          "corrected_result": "30",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "27+3",
+              "normalized_expression": "27+3",
+              "score": 0.578390208648469,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2743",
+              "normalized_expression": "2743",
+              "score": -3.8421895867230997,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "27*3",
+              "normalized_expression": "27*3",
+              "score": -4.187560263550733,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "27/3",
+              "normalized_expression": "27/3",
+              "score": -4.510666517143093,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2773",
+              "normalized_expression": "2773",
+              "score": -4.602810714432446,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2713",
+              "normalized_expression": "2713",
+              "score": -4.679522780049758,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "37+3",
+              "normalized_expression": "37+3",
+              "score": -4.740533863542314,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "23+3",
+              "normalized_expression": "23+3",
+              "score": -4.799223899490789,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq4",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq4.png",
+      "expected_expression": "32/5",
+      "expected_result": "32/5",
+      "expression_winners": [
+        "v4",
+        "v5"
+      ],
+      "result_winners": [
+        "v4",
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq4",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq4.png",
+          "expected_expression": "32/5",
+          "raw_expression": "325",
+          "corrected_expression": "325",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 1,
+          "expected_result": "32/5",
+          "raw_result": "325",
+          "corrected_result": "325",
+          "raw_result_match": false,
+          "corrected_result_match": false,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "325",
+              "normalized_expression": "325",
+              "score": -0.43932721373177913,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "335",
+              "normalized_expression": "335",
+              "score": -0.8111014144778637,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "355",
+              "normalized_expression": "355",
+              "score": -2.3149658864015925,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "375",
+              "normalized_expression": "375",
+              "score": -2.5513490385081146,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "3/5",
+              "normalized_expression": "3/5",
+              "score": -2.951680436189769,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "385",
+              "normalized_expression": "385",
+              "score": -3.031125617062305,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "315",
+              "normalized_expression": "315",
+              "score": -3.1886909654721776,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "3+5",
+              "normalized_expression": "3+5",
+              "score": -3.2684549584415032,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq4",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq4.png",
+          "expected_expression": "32/5",
+          "raw_expression": "3/5",
+          "corrected_expression": "3/5",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 1,
+          "expected_result": "32/5",
+          "raw_result": "3/5",
+          "corrected_result": "3/5",
+          "raw_result_match": false,
+          "corrected_result_match": false,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "3/5",
+              "normalized_expression": "3/5",
+              "score": 0.6062258900721496,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "315",
+              "normalized_expression": "315",
+              "score": -3.6648372821562902,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "2/5",
+              "normalized_expression": "2/5",
+              "score": -3.815598863245463,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "335",
+              "normalized_expression": "335",
+              "score": -3.9061368505560816,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "3+5",
+              "normalized_expression": "3+5",
+              "score": -3.93206276020356,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "3=5",
+              "normalized_expression": "3=5",
+              "score": -4.3104594674870365,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "8/5",
+              "normalized_expression": "8/5",
+              "score": -4.548608157093996,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "375",
+              "normalized_expression": "375",
+              "score": -4.641092143076304,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq5",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq5.png",
+      "expected_expression": "4/4+3",
+      "expected_result": "4",
+      "expression_winners": [
+        "v4",
+        "v5"
+      ],
+      "result_winners": [
+        "v4",
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq5",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq5.png",
+          "expected_expression": "4/4+3",
+          "raw_expression": "4+3-4",
+          "corrected_expression": "4/4+3",
+          "raw_exact_match": false,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 4,
+          "corrected_edit_distance": 0,
+          "expected_result": "4",
+          "raw_result": "3",
+          "corrected_result": "4",
+          "raw_result_match": false,
+          "corrected_result_match": true,
+          "correction_changed_expression": true,
+          "correction_improved_expression": true,
+          "correction_improved_result": true,
+          "correction_candidates": [
+            {
+              "expression": "4/4+3",
+              "normalized_expression": "4/4+3",
+              "score": 1.6901183505640403,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+3-4",
+              "normalized_expression": "4+3-4",
+              "score": 1.1606124031325658,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+3/4",
+              "normalized_expression": "4+3/4",
+              "score": -0.9165949501961883,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+3=4",
+              "normalized_expression": "4+3=4",
+              "score": -1.1091494952146226,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4/3-4",
+              "normalized_expression": "4/3-4",
+              "score": -3.5488094514571786,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4*3-4",
+              "normalized_expression": "4*3-4",
+              "score": -3.9933252053998824,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "473-4",
+              "normalized_expression": "473-4",
+              "score": -4.007129518594095,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "483-4",
+              "normalized_expression": "483-4",
+              "score": -4.076091597793563,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq5",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq5.png",
+          "expected_expression": "4/4+3",
+          "raw_expression": "4+3-4",
+          "corrected_expression": "4/4+3",
+          "raw_exact_match": false,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 4,
+          "corrected_edit_distance": 0,
+          "expected_result": "4",
+          "raw_result": "3",
+          "corrected_result": "4",
+          "raw_result_match": false,
+          "corrected_result_match": true,
+          "correction_changed_expression": true,
+          "correction_improved_expression": true,
+          "correction_improved_result": true,
+          "correction_candidates": [
+            {
+              "expression": "4/4+3",
+              "normalized_expression": "4/4+3",
+              "score": 1.7406733928824034,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+3-4",
+              "normalized_expression": "4+3-4",
+              "score": 1.210201347139632,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+3/4",
+              "normalized_expression": "4+3/4",
+              "score": -0.873652897225186,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+3=4",
+              "normalized_expression": "4+3=4",
+              "score": -1.054341264699155,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4/3-4",
+              "normalized_expression": "4/3-4",
+              "score": -4.21519681726027,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4*3-4",
+              "normalized_expression": "4*3-4",
+              "score": -4.398063875057549,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+5-4",
+              "normalized_expression": "4+5-4",
+              "score": -4.409157732896121,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "3+3-4",
+              "normalized_expression": "3+3-4",
+              "score": -4.489237357340544,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq6",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq6.png",
+      "expected_expression": "55*2",
+      "expected_result": "110",
+      "expression_winners": [
+        "v5"
+      ],
+      "result_winners": [
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq6",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq6.png",
+          "expected_expression": "55*2",
+          "raw_expression": "5522",
+          "corrected_expression": "5522",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 1,
+          "expected_result": "110",
+          "raw_result": "5522",
+          "corrected_result": "5522",
+          "raw_result_match": false,
+          "corrected_result_match": false,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "5522",
+              "normalized_expression": "5522",
+              "score": -0.6578509908675199,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "55*2",
+              "normalized_expression": "55*2",
+              "score": -0.7330438579092506,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "55+2",
+              "normalized_expression": "55+2",
+              "score": -0.8514975890277854,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5572",
+              "normalized_expression": "5572",
+              "score": -1.5776491320790964,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5512",
+              "normalized_expression": "5512",
+              "score": -1.8769644177597378,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5502",
+              "normalized_expression": "5502",
+              "score": -2.3400812819884336,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5582",
+              "normalized_expression": "5582",
+              "score": -2.961755840544753,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5542",
+              "normalized_expression": "5542",
+              "score": -3.101077345859046,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq6",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq6.png",
+          "expected_expression": "55*2",
+          "raw_expression": "5572",
+          "corrected_expression": "55*2",
+          "raw_exact_match": false,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 0,
+          "expected_result": "110",
+          "raw_result": "5572",
+          "corrected_result": "110",
+          "raw_result_match": false,
+          "corrected_result_match": true,
+          "correction_changed_expression": true,
+          "correction_improved_expression": true,
+          "correction_improved_result": true,
+          "correction_candidates": [
+            {
+              "expression": "55*2",
+              "normalized_expression": "55*2",
+              "score": -0.6991111459629877,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "55+2",
+              "normalized_expression": "55+2",
+              "score": -0.8175648770815225,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5572",
+              "normalized_expression": "5572",
+              "score": -0.8523210080017491,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5522",
+              "normalized_expression": "5522",
+              "score": -1.2032608783146117,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5512",
+              "normalized_expression": "5512",
+              "score": -1.5457632802802086,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5582",
+              "normalized_expression": "5582",
+              "score": -2.314970024629692,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "55-2",
+              "normalized_expression": "55-2",
+              "score": -2.3723082818383663,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5502",
+              "normalized_expression": "5502",
+              "score": -3.2724289145300514,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq7",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq7.png",
+      "expected_expression": "4/2",
+      "expected_result": "2",
+      "expression_winners": [
+        "v4"
+      ],
+      "result_winners": [
+        "v4"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq7",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq7.png",
+          "expected_expression": "4/2",
+          "raw_expression": "4-/2",
+          "corrected_expression": "4-+2",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 2,
+          "expected_result": "2",
+          "raw_result": null,
+          "corrected_result": "2",
+          "raw_result_match": false,
+          "corrected_result_match": true,
+          "correction_changed_expression": true,
+          "correction_improved_expression": false,
+          "correction_improved_result": true,
+          "correction_candidates": [
+            {
+              "expression": "4-+2",
+              "normalized_expression": "4-+2",
+              "score": -1.2008022526302715,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4-*2",
+              "normalized_expression": "4-*2",
+              "score": -1.3123485215117363,
+              "valid": true,
+              "solvable": false
+            },
+            {
+              "expression": "4-12",
+              "normalized_expression": "4-12",
+              "score": -1.5660677991418557,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4-72",
+              "normalized_expression": "4-72",
+              "score": -1.7774196417049621,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4-/2",
+              "normalized_expression": "4-/2",
+              "score": -1.8098439158900093,
+              "valid": true,
+              "solvable": false
+            },
+            {
+              "expression": "4-22",
+              "normalized_expression": "4-22",
+              "score": -2.0335546458613334,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4-82",
+              "normalized_expression": "4-82",
+              "score": -2.072970436753096,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4/+2",
+              "normalized_expression": "4/+2",
+              "score": -2.601711206739408,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq7",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq7.png",
+          "expected_expression": "4/2",
+          "raw_expression": "4/12",
+          "corrected_expression": "4/12",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 1,
+          "expected_result": "2",
+          "raw_result": "1/3",
+          "corrected_result": "1/3",
+          "raw_result_match": false,
+          "corrected_result_match": false,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "4/12",
+              "normalized_expression": "4/12",
+              "score": -0.7980743271729249,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4=12",
+              "normalized_expression": "4=12",
+              "score": -1.1449559050478448,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4-12",
+              "normalized_expression": "4-12",
+              "score": -1.3491730706302785,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4/+2",
+              "normalized_expression": "4/+2",
+              "score": -1.7982750234479352,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4-+2",
+              "normalized_expression": "4-+2",
+              "score": -2.2693737669052885,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4-*2",
+              "normalized_expression": "4-*2",
+              "score": -2.3809200357867537,
+              "valid": true,
+              "solvable": false
+            },
+            {
+              "expression": "4+12",
+              "normalized_expression": "4+12",
+              "score": -3.005815546779729,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4/02",
+              "normalized_expression": "4/02",
+              "score": -3.1109397264962912,
+              "valid": true,
+              "solvable": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq8",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq8.png",
+      "expected_expression": "5+3+2",
+      "expected_result": "10",
+      "expression_winners": [
+        "v5"
+      ],
+      "result_winners": [
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq8",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq8.png",
+          "expected_expression": "5+3+2",
+          "raw_expression": "5+382",
+          "corrected_expression": "5+3*2",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 1,
+          "expected_result": "10",
+          "raw_result": "387",
+          "corrected_result": "11",
+          "raw_result_match": false,
+          "corrected_result_match": false,
+          "correction_changed_expression": true,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "5+3*2",
+              "normalized_expression": "5+3*2",
+              "score": -0.16307053141301603,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+3+2",
+              "normalized_expression": "5+3+2",
+              "score": -0.2815242625315508,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+382",
+              "normalized_expression": "5+382",
+              "score": -0.6601399164924318,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+342",
+              "normalized_expression": "5+342",
+              "score": -1.77106318213984,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+312",
+              "normalized_expression": "5+312",
+              "score": -2.280981134297544,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+362",
+              "normalized_expression": "5+362",
+              "score": -2.977460115078178,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+372",
+              "normalized_expression": "5+372",
+              "score": -3.2588765272020286,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+322",
+              "normalized_expression": "5+322",
+              "score": -3.2841738680789443,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq8",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq8.png",
+          "expected_expression": "5+3+2",
+          "raw_expression": "5+342",
+          "corrected_expression": "5+3+2",
+          "raw_exact_match": false,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 0,
+          "expected_result": "10",
+          "raw_result": "347",
+          "corrected_result": "10",
+          "raw_result_match": false,
+          "corrected_result_match": true,
+          "correction_changed_expression": true,
+          "correction_improved_expression": true,
+          "correction_improved_result": true,
+          "correction_candidates": [
+            {
+              "expression": "5+3+2",
+              "normalized_expression": "5+3+2",
+              "score": -0.09060466608982803,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+3*2",
+              "normalized_expression": "5+3*2",
+              "score": -0.5333423867002969,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+342",
+              "normalized_expression": "5+342",
+              "score": -0.8250906569758139,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+312",
+              "normalized_expression": "5+312",
+              "score": -2.1163771755051135,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+362",
+              "normalized_expression": "5+362",
+              "score": -2.243596986116117,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+3/2",
+              "normalized_expression": "5+3/2",
+              "score": -2.9014079924493013,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+382",
+              "normalized_expression": "5+382",
+              "score": -3.0072925788992007,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "5+332",
+              "normalized_expression": "5+332",
+              "score": -3.142459014726662,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq9",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq9.png",
+      "expected_expression": "7+3-5-2",
+      "expected_result": "3",
+      "expression_winners": [
+        "v5"
+      ],
+      "result_winners": [
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq9",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq9.png",
+          "expected_expression": "7+3-5-2",
+          "raw_expression": "7+3-5=2",
+          "corrected_expression": "7+3-5=2",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 1,
+          "expected_result": "3",
+          "raw_result": "False",
+          "corrected_result": "False",
+          "raw_result_match": false,
+          "corrected_result_match": false,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "7+3-5=2",
+              "normalized_expression": "7+3-5=2",
+              "score": 0.6273224961778676,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7*3-5=2",
+              "normalized_expression": "7*3-5=2",
+              "score": -0.5837614151320689,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+3-5-2",
+              "normalized_expression": "7+3-5-2",
+              "score": -0.6428491839171377,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+3-5/2",
+              "normalized_expression": "7+3-5/2",
+              "score": -1.0517771939782576,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+3/5=2",
+              "normalized_expression": "7+3/5=2",
+              "score": -1.3335156107401362,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "773-5=2",
+              "normalized_expression": "773-5=2",
+              "score": -1.3809423673575403,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "743-5=2",
+              "normalized_expression": "743-5=2",
+              "score": -1.4184136051389296,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "783-5=2",
+              "normalized_expression": "783-5=2",
+              "score": -1.763912892882008,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq9",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq9.png",
+          "expected_expression": "7+3-5-2",
+          "raw_expression": "743-5-2",
+          "corrected_expression": "7+3-5-2",
+          "raw_exact_match": false,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 0,
+          "expected_result": "3",
+          "raw_result": "736",
+          "corrected_result": "3",
+          "raw_result_match": false,
+          "corrected_result_match": true,
+          "correction_changed_expression": true,
+          "correction_improved_expression": true,
+          "correction_improved_result": true,
+          "correction_candidates": [
+            {
+              "expression": "7+3-5-2",
+              "normalized_expression": "7+3-5-2",
+              "score": 0.5061619757977995,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7*3-5-2",
+              "normalized_expression": "7*3-5-2",
+              "score": -0.3679396597588657,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "743-5-2",
+              "normalized_expression": "743-5-2",
+              "score": -0.5187348386219683,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "773-5-2",
+              "normalized_expression": "773-5-2",
+              "score": -0.7537425320441209,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+3-5=2",
+              "normalized_expression": "7+3-5=2",
+              "score": -0.8052483036112126,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+3-5/2",
+              "normalized_expression": "7+3-5/2",
+              "score": -0.9928390760611341,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+3/5-2",
+              "normalized_expression": "7+3/5-2",
+              "score": -1.51636915209701,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+3=5-2",
+              "normalized_expression": "7+3=5-2",
+              "score": -1.5713750132481505,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "eq10",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq10.png",
+      "expected_expression": "4+7-5",
+      "expected_result": "6",
+      "expression_winners": [
+        "v5"
+      ],
+      "result_winners": [
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "eq10",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq10.png",
+          "expected_expression": "4+7-5",
+          "raw_expression": "4+7=5",
+          "corrected_expression": "4+7=5",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 1,
+          "expected_result": "6",
+          "raw_result": "False",
+          "corrected_result": "False",
+          "raw_result_match": false,
+          "corrected_result_match": false,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "4+7=5",
+              "normalized_expression": "4+7=5",
+              "score": 0.22997265960086516,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+7-5",
+              "normalized_expression": "4+7-5",
+              "score": -0.05022257756144416,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+7/5",
+              "normalized_expression": "4+7/5",
+              "score": -0.8643790630997747,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4*7=5",
+              "normalized_expression": "4*7=5",
+              "score": -1.896564382462665,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4*7-5",
+              "normalized_expression": "4*7-5",
+              "score": -2.096759619624974,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4*7/5",
+              "normalized_expression": "4*7/5",
+              "score": -2.910916105163305,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+7+5",
+              "normalized_expression": "4+7+5",
+              "score": -3.375320014637227,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4/7=5",
+              "normalized_expression": "4/7=5",
+              "score": -3.719714369505742,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "eq10",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\eq10.png",
+          "expected_expression": "4+7-5",
+          "raw_expression": "4+7-5",
+          "corrected_expression": "4+7-5",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "6",
+          "raw_result": "6",
+          "corrected_result": "6",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "4+7-5",
+              "normalized_expression": "4+7-5",
+              "score": 0.668653837744839,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4*7-5",
+              "normalized_expression": "4*7-5",
+              "score": -0.44662152920477144,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+7/5",
+              "normalized_expression": "4+7/5",
+              "score": -1.4338772901499701,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+7=5",
+              "normalized_expression": "4+7=5",
+              "score": -1.558419676662191,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "447-5",
+              "normalized_expression": "447-5",
+              "score": -1.639840632041965,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4/7-5",
+              "normalized_expression": "4/7-5",
+              "score": -1.9111466157479902,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "487-5",
+              "normalized_expression": "487-5",
+              "score": -2.0662455796633736,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "467-5",
+              "normalized_expression": "467-5",
+              "score": -2.227758617400506,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "soma",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\soma.jpg",
+      "expected_expression": "1+1",
+      "expected_result": "2",
+      "expression_winners": [
+        "v4",
+        "v5"
+      ],
+      "result_winners": [
+        "v4",
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "soma",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\soma.jpg",
+          "expected_expression": "1+1",
+          "raw_expression": "1+1",
+          "corrected_expression": "1+1",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "2",
+          "raw_result": "2",
+          "corrected_result": "2",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "1+1",
+              "normalized_expression": "1+1",
+              "score": 0.654048970331555,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+1",
+              "normalized_expression": "7+1",
+              "score": -3.6678509924596674,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "1+7",
+              "normalized_expression": "1+7",
+              "score": -4.481307995581378,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "3+1",
+              "normalized_expression": "3+1",
+              "score": -4.648591095004318,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+1",
+              "normalized_expression": "4+1",
+              "score": -4.698533145869237,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "9+1",
+              "normalized_expression": "9+1",
+              "score": -4.73317525680509,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "0+1",
+              "normalized_expression": "0+1",
+              "score": -4.859968252701168,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "1+3",
+              "normalized_expression": "1+3",
+              "score": -4.9688129879103755,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "soma",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\soma.jpg",
+          "expected_expression": "1+1",
+          "raw_expression": "1+1",
+          "corrected_expression": "1+1",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "2",
+          "raw_result": "2",
+          "corrected_result": "2",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "1+1",
+              "normalized_expression": "1+1",
+              "score": 0.6199894031353193,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "7+1",
+              "normalized_expression": "7+1",
+              "score": -3.074057193761484,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "1+7",
+              "normalized_expression": "1+7",
+              "score": -4.121388994755212,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "4+1",
+              "normalized_expression": "4+1",
+              "score": -4.262120377878043,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "9+1",
+              "normalized_expression": "9+1",
+              "score": -4.36652904190401,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "1+4",
+              "normalized_expression": "1+4",
+              "score": -4.7797136852434186,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "3+1",
+              "normalized_expression": "3+1",
+              "score": -4.8047738653651715,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "1+9",
+              "normalized_expression": "1+9",
+              "score": -4.832872893983821,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "sub",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\sub.jpg",
+      "expected_expression": "100-20",
+      "expected_result": "80",
+      "expression_winners": [
+        "v5"
+      ],
+      "result_winners": [
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "sub",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\sub.jpg",
+          "expected_expression": "100-20",
+          "raw_expression": "10-20",
+          "corrected_expression": "10-20",
+          "raw_exact_match": false,
+          "corrected_exact_match": false,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 1,
+          "expected_result": "80",
+          "raw_result": "-10",
+          "corrected_result": "-10",
+          "raw_result_match": false,
+          "corrected_result_match": false,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "10-20",
+              "normalized_expression": "10-20",
+              "score": 0.5435930175104611,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "100-20",
+              "normalized_expression": "100-20",
+              "score": 0.5405540586465893,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "100/20",
+              "normalized_expression": "100/20",
+              "score": -1.4556131237862262,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "10/20",
+              "normalized_expression": "10/20",
+              "score": -1.5325741649223548,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "100=20",
+              "normalized_expression": "100=20",
+              "score": -1.6324055411502634,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "10=20",
+              "normalized_expression": "10=20",
+              "score": -1.7093665822863915,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "12-20",
+              "normalized_expression": "12-20",
+              "score": -3.382050986459581,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "16-20",
+              "normalized_expression": "16-20",
+              "score": -3.905558556323509,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "sub",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\sub.jpg",
+          "expected_expression": "100-20",
+          "raw_expression": "10-20",
+          "corrected_expression": "100-20",
+          "raw_exact_match": false,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 1,
+          "corrected_edit_distance": 0,
+          "expected_result": "80",
+          "raw_result": "-10",
+          "corrected_result": "80",
+          "raw_result_match": false,
+          "corrected_result_match": true,
+          "correction_changed_expression": true,
+          "correction_improved_expression": true,
+          "correction_improved_result": true,
+          "correction_candidates": [
+            {
+              "expression": "100-20",
+              "normalized_expression": "100-20",
+              "score": 0.2988151589181882,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "10-20",
+              "normalized_expression": "10-20",
+              "score": 0.221154798435664,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "100/20",
+              "normalized_expression": "100/20",
+              "score": -1.723715968976621,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "16-20",
+              "normalized_expression": "16-20",
+              "score": -1.8152814078148969,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "10/20",
+              "normalized_expression": "10/20",
+              "score": -1.881376329459145,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "100=20",
+              "normalized_expression": "100=20",
+              "score": -1.898558065482704,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "10=20",
+              "normalized_expression": "10=20",
+              "score": -2.056218425965228,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "18-20",
+              "normalized_expression": "18-20",
+              "score": -2.3857366194645633,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sample_id": "teste1",
+      "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\teste1.jpg",
+      "expected_expression": "13+57=70",
+      "expected_result": "True",
+      "expression_winners": [
+        "v4",
+        "v5"
+      ],
+      "result_winners": [
+        "v4",
+        "v5"
+      ],
+      "models": {
+        "v4": {
+          "sample_id": "teste1",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\teste1.jpg",
+          "expected_expression": "13+57=70",
+          "raw_expression": "13+57=70",
+          "corrected_expression": "13+57=70",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "True",
+          "raw_result": "True",
+          "corrected_result": "True",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "13+57=70",
+              "normalized_expression": "13+57=70",
+              "score": 0.643695282472821,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13+57-70",
+              "normalized_expression": "13+57-70",
+              "score": -0.9880637201480527,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13+57570",
+              "normalized_expression": "13+57570",
+              "score": -1.928535636362666,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13+57270",
+              "normalized_expression": "13+57270",
+              "score": -1.9322792568320326,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13+57670",
+              "normalized_expression": "13+57670",
+              "score": -2.6287059877926566,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13+57/70",
+              "normalized_expression": "13+57/70",
+              "score": -2.978822942098426,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13+57370",
+              "normalized_expression": "13+57370",
+              "score": -3.134074761149808,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13+57170",
+              "normalized_expression": "13+57170",
+              "score": -3.747676042281728,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        },
+        "v5": {
+          "sample_id": "teste1",
+          "image_path": "C:\\Users\\mathe\\OneDrive\\Documentos\\GitHub\\MathSolverAI\\data\\raw\\teste1.jpg",
+          "expected_expression": "13+57=70",
+          "raw_expression": "13+57=70",
+          "corrected_expression": "13+57=70",
+          "raw_exact_match": true,
+          "corrected_exact_match": true,
+          "raw_edit_distance": 0,
+          "corrected_edit_distance": 0,
+          "expected_result": "True",
+          "raw_result": "True",
+          "corrected_result": "True",
+          "raw_result_match": true,
+          "corrected_result_match": true,
+          "correction_changed_expression": false,
+          "correction_improved_expression": false,
+          "correction_improved_result": false,
+          "correction_candidates": [
+            {
+              "expression": "13+57=70",
+              "normalized_expression": "13+57=70",
+              "score": 1.4511321998622164,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13*57=70",
+              "normalized_expression": "13*57=70",
+              "score": -3.00726314293939,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13457=70",
+              "normalized_expression": "13457=70",
+              "score": -3.5999135813046235,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "73+57=70",
+              "normalized_expression": "73+57=70",
+              "score": -3.6061212585603357,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13/57=70",
+              "normalized_expression": "13/57=70",
+              "score": -4.293303287266833,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "43+57=70",
+              "normalized_expression": "43+57=70",
+              "score": -4.479166762891014,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13857=70",
+              "normalized_expression": "13857=70",
+              "score": -4.504199811037936,
+              "valid": true,
+              "solvable": true
+            },
+            {
+              "expression": "13+57/70",
+              "normalized_expression": "13+57/70",
+              "score": -4.548866535843964,
+              "valid": true,
+              "solvable": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

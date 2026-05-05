@@ -1,0 +1,81 @@
+[
+  {
+    "id": "eq1",
+    "image": "../data/raw/eq1.png",
+    "expected_expression": "5+3",
+    "expected_result": "8"
+  },
+  {
+    "id": "eq2",
+    "image": "../data/raw/eq2.png",
+    "expected_expression": "57-4",
+    "expected_result": "53"
+  },
+  {
+    "id": "eq3",
+    "image": "../data/raw/eq3.png",
+    "expected_expression": "27+3",
+    "expected_result": "30"
+  },
+  {
+    "id": "eq4",
+    "image": "../data/raw/eq4.png",
+    "expected_expression": "32/5",
+    "expected_result": "32/5"
+  },
+  {
+    "id": "eq5",
+    "image": "../data/raw/eq5.png",
+    "expected_expression": "4/4+3",
+    "expected_result": "4",
+    "notes": "Expressao com fracao em duas linhas, linearizada para benchmark."
+  },
+  {
+    "id": "eq6",
+    "image": "../data/raw/eq6.png",
+    "expected_expression": "55*2",
+    "expected_result": "110"
+  },
+  {
+    "id": "eq7",
+    "image": "../data/raw/eq7.png",
+    "expected_expression": "4/2",
+    "expected_result": "2"
+  },
+  {
+    "id": "eq8",
+    "image": "../data/raw/eq8.png",
+    "expected_expression": "5+3+2",
+    "expected_result": "10"
+  },
+  {
+    "id": "eq9",
+    "image": "../data/raw/eq9.png",
+    "expected_expression": "7+3-5-2",
+    "expected_result": "3"
+  },
+  {
+    "id": "eq10",
+    "image": "../data/raw/eq10.png",
+    "expected_expression": "4+7-5",
+    "expected_result": "6"
+  },
+  {
+    "id": "soma",
+    "image": "../data/raw/soma.jpg",
+    "expected_expression": "1+1",
+    "expected_result": "2"
+  },
+  {
+    "id": "sub",
+    "image": "../data/raw/sub.jpg",
+    "expected_expression": "100-20",
+    "expected_result": "80"
+  },
+  {
+    "id": "teste1",
+    "image": "../data/raw/teste1.jpg",
+    "expected_expression": "13+57=70",
+    "expected_result": "True"
+  }
+]

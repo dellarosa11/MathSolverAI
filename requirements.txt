@@ -1,4 +1,4 @@
-# --- Visão Computacional e Processamento de Imagem ---
+# --- Visao Computacional e Processamento de Imagem ---
 opencv-python>=4.8.0.76
 Pillow>=10.0.0
 
@@ -6,22 +6,24 @@ Pillow>=10.0.0
 torch>=2.0.1
 torchvision>=0.15.2
 
-# --- Visualização e Gráficos ---
+# --- Visualizacao e Graficos ---
 matplotlib>=3.7.2
 seaborn>=0.12.2
+streamlit>=1.39.0
 
-# --- Auxiliares de IA e Ciência de Dados ---
+# --- Auxiliares de IA e Ciencia de Dados ---
 numpy>=1.24.3
 scikit-learn>=1.3.0
 scipy>=1.11.1
 tqdm>=4.65.0
 
-# --- Matemática Simbólica ---
+# --- Matematica Simbolica ---
 sympy>=1.12
 
 # --- Ambiente de Desenvolvimento ---
 ipykernel>=6.25.0
 pathlib>=1.0.1
+pytest>=8.0.0
 
-# Para instalar todas as dependências, execute:
+# Para instalar todas as dependencias, execute:
 # pip install -r requirements.txt
