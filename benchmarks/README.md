@@ -26,3 +26,13 @@ Observacao:
 
 - o benchmark so faz sentido com imagens de expressoes reais, nao com folhas contendo simbolos soltos em varias linhas
 - para diagnosticar uma imagem isolada antes de benchmark, prefira `main.py --diagnostic` ou `src/utils/export_inference_debug.py`
+
+## Comparando modelos
+
+O projeto tambem inclui um benchmark inicial com fotos locais em [local_photos.json](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/benchmarks/local_photos.json).
+
+Para comparar dois checkpoints de uma vez:
+
+```powershell
+python src/utils/compare_benchmark_models.py --manifest benchmarks/local_photos.json --model v4=models/math_cnn_plus_bhmsds_v4_best.pth --model v5=models/math_cnn_plus_mathwriting_v5_best.pth --report-path benchmarks/model_comparison.json --csv-path benchmarks/model_comparison.csv
+```

@@ -28,6 +28,19 @@ def test_extract_bounding_boxes_merges_fragmented_equals_sign():
     assert boxes[0][2] >= 16
 
 
+def test_extract_bounding_boxes_merges_fragmented_division_sign():
+    binary = np.zeros((80, 80), dtype=np.uint8)
+    cv2.rectangle(binary, (33, 10), (38, 15), 255, -1)
+    cv2.rectangle(binary, (20, 30), (50, 35), 255, -1)
+    cv2.rectangle(binary, (33, 38), (38, 43), 255, -1)
+
+    processor = ImageProcessor()
+    boxes = processor.extract_bounding_boxes(binary)
+
+    assert len(boxes) == 1
+    assert boxes[0][3] >= 30
+
+
 def test_extract_bounding_boxes_does_not_merge_tall_stacked_symbols():
     binary = np.zeros((90, 40), dtype=np.uint8)
     cv2.rectangle(binary, (10, 8), (24, 30), 255, -1)
@@ -50,6 +63,19 @@ def test_extract_bounding_boxes_filters_tiny_noise_blobs():
     boxes = processor.extract_bounding_boxes(binary)
 
     assert len(boxes) == 2
+
+
+def test_extract_bounding_boxes_splits_wide_connected_digit_blob():
+    binary = np.zeros((50, 90), dtype=np.uint8)
+    cv2.rectangle(binary, (8, 10), (28, 38), 255, -1)
+    cv2.rectangle(binary, (40, 10), (60, 38), 255, -1)
+    cv2.rectangle(binary, (29, 22), (39, 24), 255, -1)
+
+    processor = ImageProcessor()
+    boxes = processor.extract_bounding_boxes(binary)
+
+    assert len(boxes) == 2
+    assert boxes[0][0] < boxes[1][0]
 
 
 def test_prepare_for_nn_returns_28x28_image():

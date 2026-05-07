@@ -30,6 +30,7 @@ Projeto em desenvolvimento para reconhecer simbolos e expressoes matematicas a p
 - [src/data/generate_synthetic_symbols.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/generate_synthetic_symbols.py): gerador de numeros e operadores sinteticos
 - [src/data/import_hasyv2.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/import_hasyv2.py): baixa o HASYv2 oficial e importa operadores manuscritos para `data/symbols`
 - [src/data/import_bhmsds.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/import_bhmsds.py): baixa o BHMSDS e importa digitos e operadores compativeis para `data/symbols`
+- [src/data/import_mathwriting.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/import_mathwriting.py): baixa o MathWriting e rasteriza simbolos manuscritos compativeis para `data/symbols`
 - [src/utils/benchmark_inference.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/benchmark_inference.py): benchmark com imagens rotuladas
 - [src/utils/export_inference_debug.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/export_inference_debug.py): exporta recortes, confianca e alternativas por simbolo
 - [src/utils/import_debug_corrections.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/import_debug_corrections.py): reaproveita recortes corrigidos como novos exemplos de treino
@@ -199,6 +200,35 @@ Observacao importante:
 - o BHMSDS nao traz `=`, `(` ou `)`
 - ele tambem nao tem um `*` compativel com a classe `times` atual do projeto
 - por isso ele e melhor para reforcar `0-9`, `+`, `-` e `/`
+
+## Como Importar o MathWriting para Simbolos Manuscritos
+
+O projeto tambem consegue baixar e integrar o [MathWriting](https://github.com/google-research/google-research/tree/master/mathwriting), focando no split oficial `symbols/`, que contem glyphs isolados manuscritos em InkML.
+
+Importacao recomendada:
+
+```powershell
+python src/data/import_mathwriting.py --clean-previous-import
+```
+
+Esse importador:
+
+- baixa o archive oficial do MathWriting
+- rasteriza os inks de `symbols/` para PNG
+- filtra apenas classes compativeis com o projeto atual
+- divide o conjunto de forma deterministica entre `train` e `val`
+
+Para validar o fluxo rapido com o excerpt oficial menor:
+
+```powershell
+python src/data/import_mathwriting.py --use-excerpt --clean-previous-import
+```
+
+Observacoes:
+
+- o MathWriting e muito bom para reforcar sinais e alguns simbolos manuscritos reais
+- ele tambem pode ser usado no futuro para benchmark de expressoes completas, mas este importador atual aproveita primeiro o split de simbolos isolados
+- labels como `\\div`, `\\times`, `\\left(` e `\\right)` sao normalizadas para as classes do projeto quando compativeis
 
 ## Como Treinar
 

@@ -1,4 +1,12 @@
-from src.data.generate_synthetic_symbols import discover_font_paths, expand_requested_labels
+import random
+
+import numpy as np
+
+from src.data.generate_synthetic_symbols import (
+    discover_font_paths,
+    expand_requested_labels,
+    render_symbol_image,
+)
 
 
 def test_expand_requested_labels_supports_keywords_and_folder_names():
@@ -23,3 +31,13 @@ def test_discover_font_paths_filters_supported_extensions(tmp_path):
     assert "fake_font.ttf" in names
     assert "other_font.otf" in names
     assert "notes.txt" not in names
+
+
+def test_render_symbol_image_generates_pixels_for_manual_operator_variants():
+    rng = random.Random(7)
+
+    times_image = render_symbol_image("*", font_paths=[], rng=rng, canvas_size=96)
+    div_image = render_symbol_image("/", font_paths=[], rng=rng, canvas_size=96)
+
+    assert np.array(times_image).max() > 0
+    assert np.array(div_image).max() > 0

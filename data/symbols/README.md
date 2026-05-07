@@ -157,6 +157,37 @@ Observacoes:
 - o dataset tambem nao oferece um simbolo `times` compativel com a classe `*` do projeto
 - use BHMSDS como reforco para digitos e alguns sinais, nao como substituto unico do restante do dataset
 
+## Importando MathWriting para simbolos manuscritos
+
+Para baixar e importar o split `symbols/` do MathWriting:
+
+```powershell
+python src/data/import_mathwriting.py --clean-previous-import
+```
+
+Esse importador rasteriza os arquivos InkML oficiais e tenta mapear labels compativeis para:
+
+- `0` a `9`
+- `plus`
+- `minus`
+- `times`
+- `div`
+- `equals`
+- `lparen`
+- `rparen`
+
+Para testar rapidamente o fluxo com o excerpt oficial menor:
+
+```powershell
+python src/data/import_mathwriting.py --use-excerpt --clean-previous-import
+```
+
+Observacoes:
+
+- o split `symbols/` do MathWriting e de treino; por isso o importador faz uma divisao deterministica local entre `train` e `val`
+- labels em LaTeX como `\div`, `\times`, `\left(` e `\right)` sao normalizadas quando houver classe correspondente
+- essa integracao foca primeiro em simbolos isolados, que encaixam direto no classificador atual
+
 ## Reaproveitando erros do debug como treino
 
 Depois de rodar o exportador de debug:

@@ -170,12 +170,132 @@ def _apply_random_effects(image: Image.Image, rng: random.Random) -> Image.Image
     return Image.fromarray(array.astype(np.uint8), mode="L")
 
 
+def _render_manual_operator_image(
+    label: str,
+    rng: random.Random,
+    canvas_size: int,
+) -> Image.Image | None:
+    if label not in {"+", "*", "/", "="}:
+        return None
+
+    image = Image.new("L", (canvas_size, canvas_size), color=0)
+    draw = ImageDraw.Draw(image)
+    center_x = canvas_size / 2 + rng.uniform(-canvas_size * 0.06, canvas_size * 0.06)
+    center_y = canvas_size / 2 + rng.uniform(-canvas_size * 0.06, canvas_size * 0.06)
+    half_span = rng.uniform(canvas_size * 0.16, canvas_size * 0.27)
+    stroke_width = rng.randint(3, 7)
+
+    if label == "+":
+        draw.line(
+            [(center_x - half_span, center_y), (center_x + half_span, center_y)],
+            fill=255,
+            width=stroke_width,
+        )
+        draw.line(
+            [(center_x, center_y - half_span), (center_x, center_y + half_span)],
+            fill=255,
+            width=stroke_width,
+        )
+    elif label == "=":
+        gap = rng.uniform(canvas_size * 0.06, canvas_size * 0.1)
+        draw.line(
+            [(center_x - half_span, center_y - gap), (center_x + half_span, center_y - gap)],
+            fill=255,
+            width=stroke_width,
+        )
+        draw.line(
+            [(center_x - half_span, center_y + gap), (center_x + half_span, center_y + gap)],
+            fill=255,
+            width=stroke_width,
+        )
+    elif label == "*":
+        if rng.random() < 0.5:
+            draw.line(
+                [(center_x - half_span, center_y - half_span), (center_x + half_span, center_y + half_span)],
+                fill=255,
+                width=stroke_width,
+            )
+            draw.line(
+                [(center_x - half_span, center_y + half_span), (center_x + half_span, center_y - half_span)],
+                fill=255,
+                width=stroke_width,
+            )
+        else:
+            draw.line(
+                [(center_x - half_span, center_y), (center_x + half_span, center_y)],
+                fill=255,
+                width=stroke_width,
+            )
+            draw.line(
+                [(center_x, center_y - half_span), (center_x, center_y + half_span)],
+                fill=255,
+                width=stroke_width,
+            )
+            draw.line(
+                [(center_x - half_span * 0.8, center_y - half_span * 0.8), (center_x + half_span * 0.8, center_y + half_span * 0.8)],
+                fill=255,
+                width=max(2, stroke_width - 1),
+            )
+            draw.line(
+                [(center_x - half_span * 0.8, center_y + half_span * 0.8), (center_x + half_span * 0.8, center_y - half_span * 0.8)],
+                fill=255,
+                width=max(2, stroke_width - 1),
+            )
+    elif label == "/":
+        if rng.random() < 0.5:
+            draw.line(
+                [(center_x - half_span, center_y + half_span), (center_x + half_span, center_y - half_span)],
+                fill=255,
+                width=stroke_width,
+            )
+        else:
+            dot_radius = max(3, stroke_width - 1)
+            bar_half_span = half_span * 0.95
+            draw.line(
+                [(center_x - bar_half_span, center_y), (center_x + bar_half_span, center_y)],
+                fill=255,
+                width=stroke_width,
+            )
+            upper_center_y = center_y - half_span * 0.95
+            lower_center_y = center_y + half_span * 0.95
+            draw.ellipse(
+                [
+                    center_x - dot_radius,
+                    upper_center_y - dot_radius,
+                    center_x + dot_radius,
+                    upper_center_y + dot_radius,
+                ],
+                fill=255,
+            )
+            draw.ellipse(
+                [
+                    center_x - dot_radius,
+                    lower_center_y - dot_radius,
+                    center_x + dot_radius,
+                    lower_center_y + dot_radius,
+                ],
+                fill=255,
+            )
+
+    rotation = rng.uniform(-20.0, 20.0)
+    return image.rotate(
+        rotation,
+        resample=Image.Resampling.BILINEAR,
+        fillcolor=0,
+    )
+
+
 def render_symbol_image(
     label: str,
     font_paths: Sequence[Path],
     rng: random.Random,
     canvas_size: int = 96,
 ) -> Image.Image:
+    if label in {"+", "*", "/", "="} and rng.random() < 0.55:
+        manual = _render_manual_operator_image(label, rng=rng, canvas_size=canvas_size)
+        if manual is not None:
+            return _apply_random_effects(manual, rng)
+
     background = Image.new("L", (canvas_size, canvas_size), color=0)
     draw = ImageDraw.Draw(background)
 
