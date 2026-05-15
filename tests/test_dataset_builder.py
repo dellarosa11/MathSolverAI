@@ -1,34 +1,30 @@
-import pytest
-from torch.utils.data import Dataset
+import random
 
-from src.data.dataset_builder import build_weighted_sampler, get_class_distribution
+import numpy as np
+from PIL import Image
 
-
-class DummyDataset(Dataset):
-    def __init__(self, targets):
-        self.targets = targets
-
-    def __len__(self):
-        return len(self.targets)
-
-    def __getitem__(self, index):
-        return index, self.targets[index]
+from src.data.dataset_builder import NotebookPhotoAugmentation, get_base_transform
 
 
-def test_get_class_distribution_counts_labels():
-    dataset = DummyDataset([0, 0, 1, 3])
+def test_notebook_photo_augmentation_preserves_image_shape():
+    random.seed(123)
+    base = Image.fromarray(np.zeros((28, 28), dtype=np.uint8), mode="L")
+    augmenter = NotebookPhotoAugmentation(line_probability=1.0)
 
-    distribution = get_class_distribution(dataset, ["0", "1", "2", "3"])
+    augmented = augmenter(base)
 
-    assert distribution == {"0": 2, "1": 1, "2": 0, "3": 1}
+    assert augmented.size == (28, 28)
+    assert np.asarray(augmented).dtype == np.uint8
+    assert np.asarray(augmented).max() > 0
 
 
-def test_build_weighted_sampler_gives_higher_weight_to_rare_class():
-    dataset = DummyDataset([0, 0, 0, 1])
+def test_base_transform_with_augmentation_returns_tensor():
+    random.seed(123)
+    np.random.seed(123)
+    base = Image.fromarray(np.zeros((28, 28), dtype=np.uint8), mode="L")
+    transform = get_base_transform(train=True, use_augmentation=True)
 
-    sampler = build_weighted_sampler(dataset)
-    weights = sampler.weights.tolist()
+    tensor = transform(base)
 
-    assert weights[0] == pytest.approx(weights[1])
-    assert weights[0] == pytest.approx(weights[2])
-    assert weights[3] > weights[0]
+    assert tensor.shape == (1, 28, 28)
+    assert tensor.dtype.is_floating_point

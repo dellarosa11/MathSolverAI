@@ -15,6 +15,7 @@ SYMBOL_FOLDER_TO_LABEL: Dict[str, str] = {
     "equals": "=",
     "lparen": "(",
     "rparen": ")",
+    "x": "x",
 }
 
 FOLDER_TO_LABEL: Dict[str, str] = {

@@ -33,6 +33,8 @@ DEFAULT_SEED = 42
 
 LABEL_NORMALIZATION: Dict[str, str] = {
     **{digit: digit for digit in DIGIT_CLASSES},
+    "x": "x",
+    "X": "x",
     "+": "+",
     "-": "-",
     "=": "=",
@@ -46,7 +48,7 @@ LABEL_NORMALIZATION: Dict[str, str] = {
     r"\left(": "(",
     r"\right)": ")",
 }
-DEFAULT_SELECTED_FOLDERS = tuple(DIGIT_CLASSES + ["plus", "minus", "times", "div", "equals", "lparen", "rparen"])
+DEFAULT_SELECTED_FOLDERS = tuple(DIGIT_CLASSES + ["plus", "minus", "times", "div", "equals", "lparen", "rparen", "x"])
 OPERATORS_ONLY = ("plus", "minus", "times", "div", "equals", "lparen", "rparen")
 
 

@@ -16,6 +16,7 @@ class ImageProcessor:
         self.image_path = str(image_path) if image_path is not None else None
         self.original_image: np.ndarray | None = None
         self.processed_image: np.ndarray | None = None
+        self.processing_debug: dict[str, np.ndarray] = {}
 
     def load_image(self, image_path: Optional[str | Path] = None) -> np.ndarray:
         """Carrega a imagem em escala de cinza."""
@@ -36,6 +37,104 @@ class ImageProcessor:
         self.original_image = image
         return self.original_image
 
+    @staticmethod
+    def _ensure_odd(value: int) -> int:
+        return value if value % 2 == 1 else value + 1
+
+    @staticmethod
+    def _filter_horizontal_line_components(
+        mask: np.ndarray,
+        *,
+        min_width: int,
+        max_height: int,
+    ) -> np.ndarray:
+        num_labels, labels, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
+        filtered = np.zeros_like(mask)
+
+        for label_index in range(1, num_labels):
+            x, y, width, height, area = stats[label_index]
+            if area <= 0:
+                continue
+            if width < min_width or height > max_height:
+                continue
+            filtered[labels == label_index] = 255
+
+        return filtered
+
+    def _remove_notebook_lines(
+        self,
+        image: np.ndarray,
+    ) -> tuple[np.ndarray, np.ndarray]:
+        height, width = image.shape[:2]
+        blurred = cv2.GaussianBlur(image, (3, 3), 0)
+        dark_pixels = cv2.adaptiveThreshold(
+            blurred,
+            255,
+            cv2.ADAPTIVE_THRESH_MEAN_C,
+            cv2.THRESH_BINARY_INV,
+            31,
+            12,
+        )
+
+        horizontal_kernel_width = max(24, width // 8)
+        horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (horizontal_kernel_width, 1))
+        horizontal_lines = cv2.morphologyEx(dark_pixels, cv2.MORPH_OPEN, horizontal_kernel, iterations=1)
+        filtered_lines = self._filter_horizontal_line_components(
+            horizontal_lines,
+            min_width=max(28, int(width * 0.30)),
+            max_height=max(5, height // 24),
+        )
+        line_mask = cv2.dilate(filtered_lines, np.ones((3, 3), np.uint8), iterations=1)
+        cleaned = cv2.inpaint(image, line_mask, 3, cv2.INPAINT_TELEA)
+
+        return cleaned, line_mask
+
+    def _build_processing_debug(
+        self,
+        image_path: Optional[str | Path] = None,
+    ) -> dict[str, np.ndarray]:
+        image = self.load_image(image_path)
+
+        denoised = cv2.fastNlMeansDenoising(image, None, h=9, templateWindowSize=7, searchWindowSize=21)
+        clahe = cv2.createCLAHE(clipLimit=2.2, tileGridSize=(8, 8))
+        contrast = clahe.apply(denoised)
+        line_removed, line_mask = self._remove_notebook_lines(contrast)
+
+        background_size = self._ensure_odd(max(31, (min(image.shape[:2]) // 12) | 1))
+        background = cv2.GaussianBlur(line_removed, (background_size, background_size), 0)
+        normalized = cv2.divide(line_removed, np.maximum(background, 1), scale=255)
+
+        blurred = cv2.GaussianBlur(normalized, (5, 5), 0)
+        thresh = cv2.adaptiveThreshold(
+            blurred,
+            255,
+            cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+            cv2.THRESH_BINARY_INV,
+            17,
+            8,
+        )
+
+        kernel = np.ones((3, 3), np.uint8)
+        opened = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=1)
+        closed = cv2.morphologyEx(opened, cv2.MORPH_CLOSE, kernel, iterations=1)
+        final_binary = cv2.dilate(closed, kernel, iterations=1)
+
+        self.processed_image = final_binary
+        self.processing_debug = {
+            "original": image.copy(),
+            "denoised": denoised,
+            "contrast": contrast,
+            "line_mask": line_mask,
+            "line_removed": line_removed,
+            "normalized": normalized,
+            "blurred": blurred,
+            "threshold": thresh,
+            "opened": opened,
+            "closed": closed,
+            "final_binary": final_binary,
+        }
+        return self.processing_debug
+
     def get_processed_pipeline(
         self,
         image_path: Optional[str | Path] = None,
@@ -44,26 +143,22 @@ class ImageProcessor:
         Executa o pipeline basico de pre-processamento.
         Retorna: (imagem_original, imagem_binaria)
         """
-        image = self.load_image(image_path)
-
-        blurred = cv2.GaussianBlur(image, (5, 5), 0)
-        thresh = cv2.adaptiveThreshold(
-            blurred,
-            255,
-            cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-            cv2.THRESH_BINARY_INV,
-            11,
-            2,
-        )
-
-        kernel = np.ones((3, 3), np.uint8)
-        closed = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=1)
-        self.processed_image = cv2.dilate(closed, kernel, iterations=1)
+        debug = self._build_processing_debug(image_path)
 
         if self.original_image is None or self.processed_image is None:
             raise RuntimeError("Falha ao processar as imagens no pipeline.")
 
         return self.original_image, self.processed_image
+
+    def get_processing_debug(
+        self,
+        image_path: Optional[str | Path] = None,
+    ) -> dict[str, np.ndarray]:
+        """
+        Retorna as etapas intermediarias do tratamento da imagem.
+        """
+        debug = self._build_processing_debug(image_path)
+        return {name: stage.copy() for name, stage in debug.items()}
 
     @staticmethod
     def _should_merge_boxes(

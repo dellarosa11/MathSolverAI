@@ -10,12 +10,13 @@ from src.data.generate_synthetic_symbols import (
 
 
 def test_expand_requested_labels_supports_keywords_and_folder_names():
-    labels = expand_requested_labels(["digits", "plus", "operators"])
+    labels = expand_requested_labels(["digits", "plus", "operators", "x"])
 
     assert "0" in labels
     assert "9" in labels
     assert "+" in labels
     assert "-" in labels
+    assert "x" in labels
 
 
 def test_discover_font_paths_filters_supported_extensions(tmp_path):
@@ -38,6 +39,8 @@ def test_render_symbol_image_generates_pixels_for_manual_operator_variants():
 
     times_image = render_symbol_image("*", font_paths=[], rng=rng, canvas_size=96)
     div_image = render_symbol_image("/", font_paths=[], rng=rng, canvas_size=96)
+    variable_image = render_symbol_image("x", font_paths=[], rng=rng, canvas_size=96)
 
     assert np.array(times_image).max() > 0
     assert np.array(div_image).max() > 0
+    assert np.array(variable_image).max() > 0

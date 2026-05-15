@@ -149,6 +149,12 @@ Para gerar um subconjunto:
 python src/data/generate_synthetic_symbols.py --labels 0 1 2 plus minus equals lparen rparen
 ```
 
+Para gerar exemplos da variavel `x` para equacoes de primeiro grau:
+
+```powershell
+python src/data/generate_synthetic_symbols.py --labels x --train-count 260 --val-count 60 --prefix x_first_degree
+```
+
 ## Como Importar o HASYv2 para Operadores Reais
 
 O projeto tambem consegue baixar e integrar o [HASYv2](https://zenodo.org/records/259444), um dataset publico de simbolos manuscritos. No fluxo atual ele reforca especialmente:
@@ -245,6 +251,12 @@ Observacoes:
 - o MathWriting e muito bom para reforcar sinais e alguns simbolos manuscritos reais
 - ele tambem pode ser usado no futuro para benchmark de expressoes completas, mas este importador atual aproveita primeiro o split de simbolos isolados
 - labels como `\\div`, `\\times`, `\\left(` e `\\right)` sao normalizadas para as classes do projeto quando compativeis
+
+Para reforcar especificamente a variavel `x`:
+
+```powershell
+python src/data/import_mathwriting.py --symbols x --clean-previous-import
+```
 
 ## Como Treinar
 
