@@ -17,8 +17,5 @@ data/symbols/synthetic_manifest.json
 !data/symbols/train/.gitkeep
 !data/symbols/val/.gitkeep
 
-models/*.pth
 !models/.gitkeep
-
-src/models/*.pth
 debug_outputs/
