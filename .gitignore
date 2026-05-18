@@ -9,7 +9,6 @@ venv/
 env/
 
 data/MNIST/
-data/raw/
 data/external/
 data/symbols/train/
 data/symbols/val/
