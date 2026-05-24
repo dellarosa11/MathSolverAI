@@ -8,13 +8,6 @@ __pycache__/
 venv/
 env/
 
-data/MNIST/
-data/external/
-data/symbols/train/
-data/symbols/val/
-data/symbols/synthetic_manifest.json
-!data/symbols/train/.gitkeep
-!data/symbols/val/.gitkeep
 
 !models/.gitkeep
 debug_outputs/
