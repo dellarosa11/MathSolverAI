@@ -1,15 +1,19 @@
 # MathSolverAI
 
-Projeto em desenvolvimento para reconhecer simbolos e expressoes matematicas a partir de imagens, montar a expressao em texto e tentar resolve-la com SymPy.
+Projeto para reconhecer expressões matemáticas a partir de imagens, transformar o que foi escrito em texto e tentar resolver a expressão automaticamente.
 
-## Objetivo
+## O que o projeto faz
 
-- Identificar digitos e simbolos matematicos em imagens
-- Reconhecer expressoes simples como `2+3` ou `x+2=5`
-- Resolver a expressao reconhecida quando ela for valida
-- Dar diagnostico suficiente para entender onde a IA esta acertando e onde esta confundindo classes
+- lê uma imagem com conta ou equação
+- segmenta os símbolos
+- reconhece números e operadores
+- monta a expressão em texto
+- tenta corrigir ambiguidades simples
+- resolve a expressão com SymPy quando ela é válida
 
-## Tecnologias
+## O que foi usado
+
+### Tecnologias
 
 - Python
 - PyTorch
@@ -18,350 +22,76 @@ Projeto em desenvolvimento para reconhecer simbolos e expressoes matematicas a p
 - NumPy
 - scikit-learn
 - Pillow
+- Streamlit
 
-## Estrutura do Projeto
+### Modelos
 
-- [main.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/main.py): ponto de entrada para inferencia e diagnostico
-- [src/train.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/train.py): treinamento com CLI, augmentation, sampler balanceado e relatorio JSON
-- [src/preprocessor.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/preprocessor.py): pre-processamento, segmentacao e ordenacao dos simbolos
-- [src/models/predictor.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/models/predictor.py): carregamento do modelo e predicao com confianca
-- [src/postprocessor.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/postprocessor.py): corretor de expressao usando alternativas do top-k
-- [src/solver.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/solver.py): validacao e resolucao simbolica com SymPy
-- [src/data/generate_synthetic_symbols.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/generate_synthetic_symbols.py): gerador de numeros e operadores sinteticos
-- [src/data/import_hasyv2.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/import_hasyv2.py): baixa o HASYv2 oficial e importa operadores manuscritos para `data/symbols`
-- [src/data/import_bhmsds.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/import_bhmsds.py): baixa o BHMSDS e importa digitos e operadores compativeis para `data/symbols`
-- [src/data/import_mathwriting.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/data/import_mathwriting.py): baixa o MathWriting e rasteriza simbolos manuscritos compativeis para `data/symbols`
-- [src/utils/benchmark_inference.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/benchmark_inference.py): benchmark com imagens rotuladas
-- [src/utils/export_inference_debug.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/export_inference_debug.py): exporta recortes, confianca e alternativas por simbolo
-- [src/utils/import_debug_corrections.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/import_debug_corrections.py): reaproveita recortes corrigidos como novos exemplos de treino
-- [src/utils/analyze_training_report.py](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/src/utils/analyze_training_report.py): resumo de pior desempenho e maiores confusoes
-- [data/symbols/README.md](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/data/symbols/README.md): nomes de pastas esperados para simbolos customizados
+- MLP nas versões iniciais
+- CNN e CNN Plus nas versões mais recentes
 
-## Configuracao
+### Datasets
 
-Instale as dependencias:
+- MNIST
+- HASYv2
+- BHMSDS
+- MathWriting
+- dados sintéticos gerados pelo próprio projeto
+- imagens reais usadas para benchmark local
+
+## Como instalar
 
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-## Como Testar
+## Como rodar
 
-Rode os testes automatizados:
-
-```powershell
-python -m pytest -q
-```
-
-## Como Rodar a Inferencia
-
-Usando os caminhos padrao:
+### Inferência padrão
 
 ```powershell
 python main.py
 ```
 
-## Interface Web com Streamlit
+### Inferência com parâmetros
 
-Para abrir uma interface em estilo chat e testar a IA com imagens:
+```powershell
+python main.py --image data/raw/teste.jpg --model models/math_mlp_weights.pth --diagnostic
+```
+
+### Interface web
 
 ```powershell
 streamlit run app_streamlit.py
 ```
 
-Nessa interface voce consegue:
-
-- escolher o checkpoint em `models/`
-- enviar uma imagem pela barra lateral
-- analisar a expressao em formato de conversa
-- ver a expressao reconhecida, a expressao corrigida e o resultado
-- abrir os detalhes de confianca por simbolo e os candidatos do corretor
-
-Mostrando confianca por simbolo e alternativas:
-
-```powershell
-python main.py --image data/raw/teste.jpg --model models/math_mlp_weights.pth --diagnostic --top-k 3
-```
-
-Desligando o corretor de expressao para comparar o comportamento bruto do modelo:
-
-```powershell
-python main.py --image data/raw/teste.jpg --model models/math_mlp_weights.pth --disable-correction
-```
-
-Reconhecendo a expressao sem tentar resolver:
-
-```powershell
-python main.py --image data/raw/teste.jpg --model models/math_mlp_weights.pth --recognize-only
-```
-
-## Como Exportar os Erros da Inferencia
-
-Para salvar os recortes de cada simbolo com confianca e alternativas:
-
-```powershell
-python src/utils/export_inference_debug.py --image data/raw/teste.jpg --model models/math_mlp_weights.pth --output-dir debug_outputs/minha_imagem
-```
-
-Esse comando gera:
-
-- `annotated_predictions.png` com as caixas desenhadas
-- um `summary.json` com a expressao reconhecida, a expressao corrigida e os candidatos do corretor
-- um PNG do recorte cru e outro do recorte preparado para a rede em cada simbolo
-
-## Como Reaproveitar Erros do Debug no Dataset
-
-Se voce ja souber qual era a expressao correta da imagem debugada:
-
-```powershell
-python src/utils/import_debug_corrections.py --summary debug_outputs/minha_imagem/summary.json --expected-expression "1+2=3"
-```
-
-Se quiser importar apenas os simbolos que a IA errou:
-
-```powershell
-python src/utils/import_debug_corrections.py --summary debug_outputs/minha_imagem/summary.json --expected-expression "1+2=3" --mismatches-only
-```
-
-Se quiser aceitar a `corrected_expression` do summary como rotulo:
-
-```powershell
-python src/utils/import_debug_corrections.py --summary debug_outputs/minha_imagem/summary.json --use-corrected-expression
-```
-
-## Como Gerar Dados Sinteticos
-
-Para gerar numeros e operadores automaticamente:
-
-```powershell
-python src/data/generate_synthetic_symbols.py --clean-output
-```
-
-Para gerar apenas operadores:
-
-```powershell
-python src/data/generate_synthetic_symbols.py --labels operators --train-count 300 --val-count 60
-```
-
-Para gerar um subconjunto:
-
-```powershell
-python src/data/generate_synthetic_symbols.py --labels 0 1 2 plus minus equals lparen rparen
-```
-
-## Como Importar o HASYv2 para Operadores Reais
-
-O projeto tambem consegue baixar e integrar o [HASYv2](https://zenodo.org/records/259444), um dataset publico de simbolos manuscritos. No fluxo atual ele reforca especialmente:
-
-- `plus` com `+`
-- `minus` com `-`
-- `times` com `\times`
-- `div` com `/`
-
-Importacao recomendada:
-
-```powershell
-python src/data/import_hasyv2.py
-```
-
-Se voce quiser reaproveitar o simbolo `\div` junto com `/` na classe de divisao:
-
-```powershell
-python src/data/import_hasyv2.py --include-obelus
-```
-
-Se quiser limpar apenas os arquivos importados anteriormente do HASY antes de rodar de novo:
-
-```powershell
-python src/data/import_hasyv2.py --clean-previous-import
-```
-
-Observacao importante:
-
-- o HASYv2 ajuda bem em `+`, `-`, `*` e `/`
-- ele nao cobre da forma que este projeto precisa as classes `=`, `(` e `)`
-- por isso, continue usando seus dados sinteticos/manuais para essas classes
-
-## Como Importar o BHMSDS para Digitos e Sinais
-
-O projeto tambem consegue baixar e integrar o [BHMSDS](https://github.com/wblachowski/bhmsds), um dataset publico com `0-9`, `+`, `-` e `/`.
-
-Importacao recomendada:
-
-```powershell
-python src/data/import_bhmsds.py --clean-previous-import
-```
-
-Por padrao, esse fluxo:
-
-- importa `0-9`
-- importa `plus`, `minus` e `div`
-- divide de forma deterministica em `80%` treino e `20%` validacao
-- inverte as imagens para o padrao do seu pipeline
-
-Para reforcar apenas operadores:
-
-```powershell
-python src/data/import_bhmsds.py --symbols operators --clean-previous-import
-```
-
-Para reforcar so o `0` e alguns sinais:
-
-```powershell
-python src/data/import_bhmsds.py --symbols 0 plus minus div --clean-previous-import
-```
-
-Observacao importante:
-
-- o BHMSDS nao traz `=`, `(` ou `)`
-- ele tambem nao tem um `*` compativel com a classe `times` atual do projeto
-- por isso ele e melhor para reforcar `0-9`, `+`, `-` e `/`
-
-## Como Importar o MathWriting para Simbolos Manuscritos
-
-O projeto tambem consegue baixar e integrar o [MathWriting](https://github.com/google-research/google-research/tree/master/mathwriting), focando no split oficial `symbols/`, que contem glyphs isolados manuscritos em InkML.
-
-Importacao recomendada:
-
-```powershell
-python src/data/import_mathwriting.py --clean-previous-import
-```
-
-Esse importador:
-
-- baixa o archive oficial do MathWriting
-- rasteriza os inks de `symbols/` para PNG
-- filtra apenas classes compativeis com o projeto atual
-- divide o conjunto de forma deterministica entre `train` e `val`
-
-Para validar o fluxo rapido com o excerpt oficial menor:
-
-```powershell
-python src/data/import_mathwriting.py --use-excerpt --clean-previous-import
-```
-
-Observacoes:
-
-- o MathWriting e muito bom para reforcar sinais e alguns simbolos manuscritos reais
-- ele tambem pode ser usado no futuro para benchmark de expressoes completas, mas este importador atual aproveita primeiro o split de simbolos isolados
-- labels como `\\div`, `\\times`, `\\left(` e `\\right)` sao normalizadas para as classes do projeto quando compativeis
-
-## Como Treinar
-
-Treino recomendado com defaults mais fortes:
+## Como treinar
 
 ```powershell
 python src/train.py
 ```
 
-Esse fluxo agora usa por padrao:
-
-- `cnn_plus`
-- `learning-rate` menor
-- augmentation no treino
-- sampler balanceado
-- label smoothing
-- scheduler de learning rate
-- early stopping
-- relatorio JSON ao lado do checkpoint
-
-Treino com parametros customizados:
+## Como testar
 
 ```powershell
-python src/train.py --epochs 20 --batch-size 32 --learning-rate 0.0005 --architecture cnn_plus --save-path models/math_cnn_weights.pth --report-path models/math_cnn_weights.json
+python -m pytest -q
 ```
 
-Treino sem augmentation nem sampler balanceado:
+## Estrutura principal
 
-```powershell
-python src/train.py --disable-augmentation --disable-balanced-sampling
-```
+- `main.py`: executa o pipeline de reconhecimento e resolução
+- `app_streamlit.py`: interface web para testar a IA
+- `src/train.py`: treinamento dos modelos
+- `src/preprocessor.py`: pré-processamento e segmentação
+- `src/models/`: arquiteturas e carregamento de modelos
+- `src/postprocessor.py`: correção da expressão reconhecida
+- `src/solver.py`: resolução simbólica
+- `benchmarks/`: arquivos de benchmark e comparação
 
-## Como Ler o Relatorio do Treino
+## Status
 
-Depois de treinar, voce pode resumir rapidamente o JSON:
-
-```powershell
-python src/utils/analyze_training_report.py models/math_cnn_weights.json
-```
-
-Isso mostra:
-
-- melhor epoca
-- melhor acuracia de validacao
-- classes com pior desempenho
-- maiores confusoes entre classes
-
-## Como Medir a IA com Benchmark
-
-Crie um manifesto `.json`, `.jsonl` ou `.csv` com campos `image` e `expected_expression`, e opcionalmente `expected_result`.
-
-Exemplo em JSON:
-
-```json
-[
-  {
-    "image": "benchmarks/sample_01.png",
-    "expected_expression": "1+2",
-    "expected_result": "3"
-  }
-]
-```
-
-Depois rode:
-
-```powershell
-python src/utils/benchmark_inference.py --manifest benchmarks/samples.example.json --model models/math_cnn_weights.pth --report-path benchmarks/report.json --csv-path benchmarks/report.csv
-```
-
-O benchmark compara:
-
-- expressao bruta reconhecida
-- expressao corrigida pelo corretor top-k
-- acerto exato da expressao
-- acerto agregado por simbolo
-- acerto do resultado quando `expected_result` existe
-- quantas amostras melhoraram por causa do corretor
-
-Veja tambem [benchmarks/README.md](/C:/Users/mathe/OneDrive/Documentos/GitHub/MathSolverAI/benchmarks/README.md) para um manifesto inicial.
-
-## O Que Mais Ajuda a IA a Melhorar
-
-- Aumentar a quantidade de simbolos em `data/symbols/train` e `data/symbols/val`
-- Balancear melhor operadores como `+`, `-`, `=`, `(` e `)`
-- Rodar treinos mais longos com `cnn`
-- Usar o relatorio de confusao para descobrir quais classes estao se parecendo demais
-- Gerar dados sinteticos para preencher lacunas de operadores e digitos
-- Importar dados reais de operadores com o HASYv2 para sair do excesso de exemplos puramente sinteticos
-- Importar BHMSDS para reforcar digitos reais e sinais como `+`, `-` e `/`
-- Exportar recortes de inferencia para enxergar se o problema esta na segmentacao ou na classificacao
-- Corrigir recortes errados e importar isso de volta para `data/symbols/train`
-- Rodar benchmark antes e depois de cada treino para medir ganho real
-
-## Artefatos Locais
-
-Arquivos como checkpoints `.pth`, caches de Python, imagens locais e dados baixados do MNIST ou do HASYv2 sao tratados como artefatos locais e nao devem ser versionados no git.
-
-## Status Atual
-
-- Inferencia via linha de comando pronta
-- Modo diagnostico com confianca por simbolo pronto
-- Corretor de expressao usando top-k pronto
-- Exportacao de recortes para inspecao pronta
-- Importacao de correcoes do debug para o dataset pronta
-- Treinamento com augmentation, sampler balanceado e early stopping pronto
-- Scheduler de learning rate e label smoothing prontos
-- Geracao sintetica de numeros e operadores pronta
-- Benchmark com imagens rotuladas pronto
-- Relatorio com distribuicao por classe e maiores confusoes pronto
-- Testes automatizados basicos prontos
-- A qualidade final ainda depende muito de ter mais simbolos reais no dataset
+O projeto já reconhece expressões simples, possui treino com CNN, benchmark local e interface para testes. O desempenho final depende bastante da qualidade da imagem, da segmentação e da variedade do dataset.
 
 ## Integrantes
 
-- Guilherme Marolla Tesch RA: 113800
-- Matheus Della Rosa RA: 113209
-
-## Licenca
-
-Projeto destinado a fins academicos e institucionais.
+- Guilherme Marolla Tesch
+- Matheus Della Rosa

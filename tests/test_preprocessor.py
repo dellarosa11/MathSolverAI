@@ -87,3 +87,38 @@ def test_prepare_for_nn_returns_28x28_image():
     assert prepared.shape == (28, 28)
     assert prepared.dtype == np.uint8
     assert prepared.max() == 255
+
+
+def test_get_processing_debug_returns_notebook_treatment_stages(tmp_path):
+    image = np.full((120, 220), 220, dtype=np.uint8)
+    cv2.line(image, (10, 30), (210, 30), 180, 2)
+    cv2.line(image, (10, 60), (210, 60), 180, 2)
+    cv2.putText(image, "13+57=70", (18, 92), cv2.FONT_HERSHEY_SIMPLEX, 1.1, 35, 3, cv2.LINE_AA)
+
+    image_path = tmp_path / "caderno.png"
+    cv2.imwrite(str(image_path), image)
+
+    processor = ImageProcessor(image_path)
+    debug = processor.get_processing_debug()
+
+    expected_keys = {
+        "original",
+        "denoised",
+        "contrast",
+        "line_mask",
+        "line_removed",
+        "normalized",
+        "blurred",
+        "threshold",
+        "opened",
+        "closed",
+        "final_binary",
+    }
+
+    assert expected_keys.issubset(debug.keys())
+    for stage in expected_keys:
+        assert debug[stage].shape == image.shape
+        assert debug[stage].dtype == np.uint8
+    assert cv2.countNonZero(debug["line_mask"]) > 0
+    assert int(debug["line_removed"][30, 50]) > int(debug["contrast"][30, 50])
+    assert debug["final_binary"].max() == 255

@@ -1,7 +1,0 @@
-[
-  {
-    "image": "../data/raw/exemplo_equacao.png",
-    "expected_expression": "1+2=3",
-    "expected_result": "True"
-  }
-]

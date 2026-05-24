@@ -2,13 +2,44 @@ from __future__ import annotations
 
 from collections import Counter
 from pathlib import Path
+import random
 from typing import Callable, List, Sequence
 
 import torch
 from torch.utils.data import ConcatDataset, Dataset, WeightedRandomSampler
 from torchvision import datasets, transforms
+from PIL import Image, ImageDraw
 
 from src.data.class_config import FOLDER_TO_INDEX, FOLDER_TO_LABEL, get_default_classes
+
+
+class NotebookPhotoAugmentation:
+    """
+    Simula linhas de caderno e pequenas imperfeicoes de foto no simbolo isolado.
+    """
+
+    def __init__(self, line_probability: float = 0.75):
+        self.line_probability = line_probability
+
+    def __call__(self, image: Image.Image) -> Image.Image:
+        canvas = image.copy()
+        draw = ImageDraw.Draw(canvas)
+        width, height = canvas.size
+
+        if random.random() < self.line_probability:
+            line_count = random.randint(1, 3)
+            for _ in range(line_count):
+                y = random.randint(max(1, height // 8), max(1, height - height // 8))
+                thickness = random.randint(1, 2)
+                intensity = random.randint(90, 175)
+                x_margin = random.randint(0, max(1, width // 10))
+                draw.line(
+                    [(x_margin, y), (width - x_margin, y)],
+                    fill=intensity,
+                    width=thickness,
+                )
+
+        return canvas
 
 
 def get_base_transform(train: bool = False, use_augmentation: bool = False) -> transforms.Compose:
@@ -21,12 +52,25 @@ def get_base_transform(train: bool = False, use_augmentation: bool = False) -> t
     if train and use_augmentation:
         transform_steps.extend(
             [
+                transforms.RandomApply(
+                    [NotebookPhotoAugmentation()],
+                    p=0.35,
+                ),
                 transforms.RandomAffine(
                     degrees=10,
                     translate=(0.08, 0.08),
                     scale=(0.92, 1.08),
                     shear=6,
                     fill=0,
+                ),
+                transforms.RandomPerspective(
+                    distortion_scale=0.15,
+                    p=0.15,
+                    fill=0,
+                ),
+                transforms.ColorJitter(
+                    brightness=0.18,
+                    contrast=0.22,
                 ),
                 transforms.RandomApply(
                     [transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 0.8))],

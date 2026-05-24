@@ -65,24 +65,32 @@ def _create_fake_mathwriting_archive(archive_path: Path) -> None:
         )
         _add_text_member(
             archive,
+            "mathwriting-2024-excerpt/symbols/x1.inkml",
+            _make_inkml("x1", "x", ["0 0 0,10 10 1", "10 0 0,0 10 1"]),
+        )
+        _add_text_member(
+            archive,
             "mathwriting-2024-excerpt/train/t1.inkml",
             _make_inkml("t1", "+", ["0 0 0,1 1 1"]),
         )
 
 
 def test_expand_requested_folders_accepts_aliases_and_labels():
-    folders = expand_requested_folders(["operators", "0", "+", "="])
+    folders = expand_requested_folders(["operators", "0", "+", "=", "x"])
 
     assert folders[:7] == ["plus", "minus", "times", "div", "equals", "lparen", "rparen"]
     assert "0" in folders
+    assert "x" in folders
 
 
 def test_build_normalized_label_to_folder_mapping_supports_latex_aliases():
-    mapping = build_normalized_label_to_folder_mapping(["plus", "div", "equals"])
+    mapping = build_normalized_label_to_folder_mapping(["plus", "div", "equals", "x"])
 
     assert mapping["+"] == "plus"
     assert mapping[r"\div"] == "div"
     assert mapping["="] == "equals"
+    assert mapping["x"] == "x"
+    assert mapping["X"] == "x"
 
 
 def test_build_split_plan_is_deterministic():
@@ -108,7 +116,7 @@ def test_import_mathwriting_symbols_rasterizes_supported_labels(tmp_path):
     train_counts, val_counts, source_label_counts = import_mathwriting_symbols(
         archive_path=archive_path,
         output_dir=output_dir,
-        label_to_folder=build_normalized_label_to_folder_mapping(["0", "plus", "div"]),
+        label_to_folder=build_normalized_label_to_folder_mapping(["0", "plus", "div", "x"]),
         train_ratio=0.5,
         seed=123,
     )
@@ -117,9 +125,11 @@ def test_import_mathwriting_symbols_rasterizes_supported_labels(tmp_path):
     assert val_counts["plus"] == 1
     assert train_counts["0"] == 1
     assert train_counts["div"] == 1
+    assert train_counts["x"] == 1
     assert source_label_counts["+"] == 2
     assert source_label_counts["0"] == 1
     assert source_label_counts[r"\div"] == 1
+    assert source_label_counts["x"] == 1
 
     imported_image = Image.open(next((output_dir / "train" / "plus").glob("mathwriting_*.png"))).convert("L")
     assert imported_image.size == (28, 28)

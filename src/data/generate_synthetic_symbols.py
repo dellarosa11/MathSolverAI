@@ -51,6 +51,7 @@ LABEL_RENDER_VARIANTS = {
     "*": ["*", "\u00d7"],
     "/": ["/", "\u00f7"],
     "-": ["-", "\u2212"],
+    "x": ["x", "X"],
 }
 
 
@@ -175,7 +176,7 @@ def _render_manual_operator_image(
     rng: random.Random,
     canvas_size: int,
 ) -> Image.Image | None:
-    if label not in {"+", "*", "/", "="}:
+    if label not in {"+", "*", "/", "=", "x"}:
         return None
 
     image = Image.new("L", (canvas_size, canvas_size), color=0)
@@ -276,6 +277,26 @@ def _render_manual_operator_image(
                 ],
                 fill=255,
             )
+    elif label == "x":
+        x_span = half_span * rng.uniform(0.85, 1.1)
+        y_span = half_span * rng.uniform(0.85, 1.15)
+        draw.line(
+            [(center_x - x_span, center_y - y_span), (center_x + x_span, center_y + y_span)],
+            fill=255,
+            width=stroke_width,
+        )
+        draw.line(
+            [(center_x - x_span, center_y + y_span), (center_x + x_span, center_y - y_span)],
+            fill=255,
+            width=max(2, stroke_width - 1),
+        )
+        if rng.random() < 0.35:
+            offset = rng.uniform(-canvas_size * 0.04, canvas_size * 0.04)
+            draw.line(
+                [(center_x - x_span * 0.55, center_y - y_span * 0.55 + offset), (center_x + x_span * 0.55, center_y + y_span * 0.55 + offset)],
+                fill=255,
+                width=max(1, stroke_width - 2),
+            )
 
     rotation = rng.uniform(-20.0, 20.0)
     return image.rotate(
@@ -291,7 +312,7 @@ def render_symbol_image(
     rng: random.Random,
     canvas_size: int = 96,
 ) -> Image.Image:
-    if label in {"+", "*", "/", "="} and rng.random() < 0.55:
+    if label in {"+", "*", "/", "=", "x"} and rng.random() < 0.55:
         manual = _render_manual_operator_image(label, rng=rng, canvas_size=canvas_size)
         if manual is not None:
             return _apply_random_effects(manual, rng)

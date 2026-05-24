@@ -19,6 +19,14 @@ def test_solver_solves_simple_equation():
     assert result == [3]
 
 
+def test_solver_supports_implicit_multiplication_with_variable():
+    solver = MathSolver()
+
+    result = solver.solve("2x + 3 = 7")
+
+    assert result == [2]
+
+
 def test_solver_evaluates_numeric_equation_as_boolean():
     solver = MathSolver()
 
@@ -45,6 +53,14 @@ def test_solver_normalizes_unicode_operators():
     result = solver.solve("2 \u00d7 3")
 
     assert result == 6
+
+
+def test_solver_normalizes_uppercase_variable():
+    solver = MathSolver()
+
+    result = solver.solve("2X+3=7")
+
+    assert result == [2]
 
 
 def test_solver_rejects_invalid_input():
